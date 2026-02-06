@@ -4,6 +4,7 @@ import {
   BarChart3, Settings, BookOpen, Bookmark,
 } from 'lucide-react';
 import CommandPalette from './CommandPalette';
+import DemoBanner from './DemoBanner';
 
 const navSections = [
   {
@@ -87,9 +88,12 @@ export default function Layout() {
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-y-auto bg-navy-50">
-        <Outlet />
-      </main>
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <DemoBanner />
+        <main className="flex-1 overflow-y-auto bg-navy-50">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }

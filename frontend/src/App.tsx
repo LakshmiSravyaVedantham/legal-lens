@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { ToastProvider } from './components/Toast';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
@@ -14,7 +14,7 @@ import SystemPage from './pages/SystemPage';
 export default function App() {
   return (
     <ToastProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Dashboard />} />
@@ -28,7 +28,7 @@ export default function App() {
             <Route path="/system" element={<SystemPage />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </ToastProvider>
   );
 }
