@@ -41,17 +41,15 @@ async function request<T>(url: string, options?: RequestInit): Promise<T> {
   return res.json();
 }
 
-/** Wraps a live API call; falls back to demo data on network error. */
+/** Wraps a live API call; falls back to demo data when backend is unreachable. */
 async function withFallback<T>(live: () => Promise<T>, fallback: () => T): Promise<T> {
   if (_isDemoMode === true) return fallback();
   try {
     return await live();
-  } catch (err) {
-    if (err instanceof TypeError && (err.message.includes('fetch') || err.message.includes('Failed'))) {
-      _isDemoMode = true;
-      return fallback();
-    }
-    throw err;
+  } catch {
+    // Any failure (network error, 404 from GitHub Pages, etc.) triggers demo mode
+    _isDemoMode = true;
+    return fallback();
   }
 }
 
@@ -72,12 +70,9 @@ export const api = {
         _isDemoMode = false;
         return res.json();
       }
-    ).catch((err) => {
-      if (err instanceof TypeError) {
-        _isDemoMode = true;
-        return { id: 'demo-upload', filename: file.name, status: 'ready' };
-      }
-      throw err;
+    ).catch(() => {
+      _isDemoMode = true;
+      return { id: 'demo-upload', filename: file.name, status: 'ready' };
     });
   },
 
