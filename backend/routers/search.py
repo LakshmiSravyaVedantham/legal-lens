@@ -1,19 +1,23 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, Request
 
 from backend.models.schemas import SearchRequest, SearchResult
 from backend.services.search_engine import semantic_search
-from backend.services.activity_tracker import log_search, log_activity
+from backend.services.activity import log_search, log_activity
+from backend.middleware.auth import get_current_user
+from backend.middleware.rate_limit import limiter, SEARCH_LIMIT
 
 router = APIRouter(tags=["search"])
 
 
 @router.post("/search", response_model=SearchResult)
-async def search_documents(request: SearchRequest):
-    results = semantic_search(query=request.query, top_k=request.top_k)
-    log_search(request.query, len(results))
-    log_activity("search", f'"{request.query}" — {len(results)} results')
+@limiter.limit(SEARCH_LIMIT)
+async def search_documents(request: Request, data: SearchRequest, user: dict = Depends(get_current_user)):
+    results = semantic_search(query=data.query, top_k=data.top_k)
+    org_id = user["organization_id"]
+    await log_search(org_id, user["id"], data.query, len(results))
+    await log_activity(org_id, user["id"], "search", f'"{data.query}" — {len(results)} results')
     return SearchResult(
-        query=request.query,
+        query=data.query,
         results=results,
         total_results=len(results),
     )

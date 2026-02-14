@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import {
   ArrowLeft, FileText, BookOpen, Scale, Calendar, DollarSign,
-  Users, MapPin, Tag, Hash, ChevronDown, ChevronUp,
+  Users, MapPin, Tag, Hash, ChevronDown, ChevronUp, Sparkles,
 } from 'lucide-react';
 import { api } from '../lib/api';
 import { useToast } from '../components/Toast';
@@ -120,6 +120,12 @@ export default function DocumentViewer() {
                 )}
               </div>
             </div>
+            <Link
+              to={`/documents/${id}/ai`}
+              className="flex items-center gap-2 px-4 py-2 text-sm bg-gold-50 text-gold-700 border border-gold-200 rounded-lg hover:bg-gold-100 transition-colors font-medium"
+            >
+              <Sparkles size={14} /> AI Insights
+            </Link>
           </div>
         </div>
 

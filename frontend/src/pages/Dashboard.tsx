@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   FileText, Database, Search, Cpu, Upload, ArrowRight,
-  BarChart3, Shield, Clock,
+  BarChart3, Shield, Clock, Sparkles,
 } from 'lucide-react';
 import { api } from '../lib/api';
+import StatusBadge from '../components/StatusBadge';
 import type { Stats, DocumentMetadata, ActivityEntry } from '../types';
 
 function timeAgo(timestamp: string): string {
@@ -22,12 +23,18 @@ export default function Dashboard() {
   const [recentDocs, setRecentDocs] = useState<DocumentMetadata[]>([]);
   const [activity, setActivity] = useState<ActivityEntry[]>([]);
   const [quickSearch, setQuickSearch] = useState('');
+  const [loadError, setLoadError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.getStats().then(setStats).catch(console.error);
-    api.getDocuments().then((r) => setRecentDocs(r.documents.slice(0, 5))).catch(console.error);
-    api.getActivityLog(8).then((r) => setActivity(r.activity)).catch(console.error);
+    setLoadError(null);
+    Promise.all([
+      api.getStats().then(setStats),
+      api.getDocuments().then((r) => setRecentDocs(r.documents.slice(0, 5))),
+      api.getActivityLog(8).then((r) => setActivity(r.activity)),
+    ]).catch(() => {
+      setLoadError('Failed to load dashboard data. Please try refreshing the page.');
+    });
   }, []);
 
   const actionIcons: Record<string, string> = {
@@ -45,6 +52,12 @@ export default function Dashboard() {
         <h1 className="text-2xl font-bold text-navy-900">Dashboard</h1>
         <p className="text-navy-500 mt-1">Document Intelligence Overview</p>
       </div>
+
+      {loadError && (
+        <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg p-3 mb-6">
+          {loadError}
+        </div>
+      )}
 
       {/* Stats cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
@@ -185,7 +198,7 @@ export default function Dashboard() {
       </div>
 
       {/* Quick actions */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <QuickAction
           to="/documents"
           icon={<Upload size={20} className="text-navy-600" />}
@@ -197,6 +210,12 @@ export default function Dashboard() {
           icon={<Cpu size={20} className="text-navy-600" />}
           title="Document Q&A"
           desc="Ask questions about your documents"
+        />
+        <QuickAction
+          to="/documents"
+          icon={<Sparkles size={20} className="text-gold-500" />}
+          title="AI Analysis"
+          desc="Risk, checklist, obligations & more"
         />
         <QuickAction
           to="/analytics"
@@ -231,20 +250,6 @@ function StatCard({
       <p className={`text-2xl font-bold ${highlight ? 'text-green-600' : 'text-navy-900'}`}>{value}</p>
       {sub && <p className="text-xs text-navy-400 mt-0.5">{sub}</p>}
     </div>
-  );
-}
-
-function StatusBadge({ status }: { status: string }) {
-  const styles: Record<string, string> = {
-    ready: 'bg-green-100 text-green-700',
-    processing: 'bg-blue-100 text-blue-700',
-    pending: 'bg-yellow-100 text-yellow-700',
-    error: 'bg-red-100 text-red-700',
-  };
-  return (
-    <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${styles[status] ?? 'bg-gray-100 text-gray-700'}`}>
-      {status}
-    </span>
   );
 }
 

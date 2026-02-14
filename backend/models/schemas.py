@@ -59,9 +59,57 @@ class ChatResponse(BaseModel):
     ollama_available: bool = True
 
 
+class ChatResponseWithFollowUps(BaseModel):
+    answer: str
+    citations: list[Citation]
+    ollama_available: bool = True
+    follow_up_suggestions: list[str] = []
+
+
 class StatsResponse(BaseModel):
     total_documents: int
     total_chunks: int
     documents_by_status: dict[str, int]
     documents_by_type: dict[str, int]
     ollama_status: str
+
+
+# ---------------------------------------------------------------------------
+# AI Analysis Models
+# ---------------------------------------------------------------------------
+
+class RiskItem(BaseModel):
+    clause: str
+    risk_level: str  # low, medium, high
+    description: str
+    recommendation: str
+
+
+class ChecklistItem(BaseModel):
+    provision: str
+    status: str  # pass, fail, review
+    detail: str
+    section: str | None = None
+
+
+class ObligationItem(BaseModel):
+    party: str
+    obligation: str
+    type: str  # obligation, duty, right, restriction
+    deadline: str | None = None
+    section: str | None = None
+    priority: str = "medium"
+
+
+class TimelineEvent(BaseModel):
+    date: str
+    event: str
+    category: str  # execution, deadline, payment, renewal, termination, notice, other
+    party: str | None = None
+
+
+class ComparisonProvision(BaseModel):
+    provision: str
+    document_a: str
+    document_b: str
+    status: str  # match, different, only_a, only_b

@@ -2,7 +2,7 @@ import logging
 
 from sentence_transformers import SentenceTransformer
 
-from backend.config import EMBEDDING_MODEL_NAME
+from backend.core.settings import get_settings
 
 logger = logging.getLogger(__name__)
 
@@ -12,8 +12,9 @@ _model: SentenceTransformer | None = None
 def load_model() -> SentenceTransformer:
     global _model
     if _model is None:
-        logger.info(f"Loading embedding model: {EMBEDDING_MODEL_NAME}")
-        _model = SentenceTransformer(EMBEDDING_MODEL_NAME)
+        model_name = get_settings().embedding_model_name
+        logger.info(f"Loading embedding model: {model_name}")
+        _model = SentenceTransformer(model_name)
         logger.info("Embedding model loaded")
     return _model
 

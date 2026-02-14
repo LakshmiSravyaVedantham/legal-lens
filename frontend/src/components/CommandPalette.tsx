@@ -77,7 +77,7 @@ export default function CommandPalette() {
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh]">
       <div className="fixed inset-0 bg-black/50" onClick={() => setOpen(false)} />
-      <div className="relative bg-white rounded-xl shadow-2xl border border-navy-200 w-full max-w-lg overflow-hidden">
+      <div role="dialog" aria-modal="true" aria-label="Command palette" className="relative bg-white rounded-xl shadow-2xl border border-navy-200 w-full max-w-lg overflow-hidden">
         <div className="flex items-center gap-3 px-4 py-3 border-b border-navy-100">
           <Search size={18} className="text-navy-400" />
           <input

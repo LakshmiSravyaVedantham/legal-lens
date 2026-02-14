@@ -7,6 +7,7 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
   citations?: Citation[];
+  followUps?: string[];
 }
 
 const SUGGESTED_QUESTIONS = [
@@ -46,7 +47,7 @@ export default function Chat() {
       const res = await api.chat({ query });
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: res.answer, citations: res.citations },
+        { role: 'assistant', content: res.answer, citations: res.citations, followUps: res.follow_up_suggestions },
       ]);
     } catch (e: any) {
       setMessages((prev) => [
@@ -111,15 +112,15 @@ export default function Chat() {
         </div>
         <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 text-center">
           <AlertTriangle size={36} className="mx-auto text-amber-500 mb-3" />
-          <h2 className="font-semibold text-amber-800 mb-2">Ollama Not Connected</h2>
+          <h2 className="font-semibold text-amber-800 mb-2">No LLM Provider Available</h2>
           <p className="text-sm text-amber-700 mb-4">
-            Document Q&A requires Ollama to be running locally. Search still works without it.
+            Document Q&A requires an LLM provider. Configure one in Settings or start Ollama locally.
           </p>
           <div className="bg-white rounded-lg p-4 text-left text-sm text-navy-700 space-y-2 max-w-md mx-auto">
-            <p className="font-medium">To get started:</p>
+            <p className="font-medium">Options:</p>
             <ol className="list-decimal pl-5 space-y-1">
-              <li>Install Ollama from <span className="font-mono text-navy-600">ollama.ai</span></li>
-              <li>Run: <code className="bg-navy-100 px-1.5 py-0.5 rounded text-xs">ollama pull llama3.1:8b</code></li>
+              <li>Go to <span className="font-semibold">Settings → LLM Providers</span> to configure Claude or OpenAI</li>
+              <li>Or install Ollama from <span className="font-mono text-navy-600">ollama.ai</span> and run: <code className="bg-navy-100 px-1.5 py-0.5 rounded text-xs">ollama pull llama3.1:8b</code></li>
               <li>Refresh this page</li>
             </ol>
           </div>
@@ -196,6 +197,22 @@ export default function Chat() {
                         [{ci + 1}] {c.document_name}{c.page ? `, p.${c.page}` : ''}
                       </button>
                     ))}
+                  </div>
+                )}
+                {msg.followUps && msg.followUps.length > 0 && (
+                  <div className="mt-2 pt-2 border-t border-navy-100">
+                    <p className="text-xs text-navy-400 mb-1.5">Follow-up questions:</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {msg.followUps.map((q, qi) => (
+                        <button
+                          key={qi}
+                          onClick={() => handleSend(q)}
+                          className="text-xs bg-gold-50 border border-gold-200 text-gold-700 px-2.5 py-1 rounded-full hover:bg-gold-100 transition-colors"
+                        >
+                          {q}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Upload, FileText, Trash2, RefreshCw, Eye } from 'lucide-react';
 import { api } from '../lib/api';
+import StatusBadge from '../components/StatusBadge';
 import type { DocumentMetadata } from '../types';
 
 export default function Documents() {
@@ -31,8 +32,8 @@ export default function Documents() {
         await api.uploadDocument(file);
       }
       loadDocuments();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'An unexpected error occurred');
     } finally {
       setUploading(false);
     }
@@ -43,8 +44,8 @@ export default function Documents() {
     try {
       await api.deleteDocument(id);
       loadDocuments();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'An unexpected error occurred');
     }
   };
 
@@ -146,6 +147,7 @@ export default function Documents() {
                           onClick={(e) => { e.stopPropagation(); navigate(`/documents/${doc.id}`); }}
                           className="text-navy-400 hover:text-navy-700 transition-colors"
                           title="View document"
+                          aria-label={`View ${doc.filename}`}
                         >
                           <Eye size={16} />
                         </button>
@@ -154,6 +156,7 @@ export default function Documents() {
                         onClick={(e) => { e.stopPropagation(); handleDelete(doc.id, doc.filename); }}
                         className="text-navy-400 hover:text-red-600 transition-colors"
                         title="Delete document"
+                        aria-label={`Delete ${doc.filename}`}
                       >
                         <Trash2 size={16} />
                       </button>
@@ -166,19 +169,5 @@ export default function Documents() {
         )}
       </div>
     </div>
-  );
-}
-
-function StatusBadge({ status }: { status: string }) {
-  const styles: Record<string, string> = {
-    ready: 'bg-green-100 text-green-700',
-    processing: 'bg-blue-100 text-blue-700',
-    pending: 'bg-yellow-100 text-yellow-700',
-    error: 'bg-red-100 text-red-700',
-  };
-  return (
-    <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${styles[status] ?? 'bg-gray-100 text-gray-700'}`}>
-      {status}
-    </span>
   );
 }

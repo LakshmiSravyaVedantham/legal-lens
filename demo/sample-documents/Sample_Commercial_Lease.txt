@@ -1,0 +1,127 @@
+COMMERCIAL LEASE AGREEMENT
+
+This Commercial Lease Agreement (the "Lease") is entered into as of June 1, 2024 (the "Commencement Date") by and between:
+
+Harbor Properties LLC, a California limited liability company ("Landlord"), and
+
+Quantum Analytics Corp., a Delaware corporation ("Tenant").
+
+RECITALS
+
+WHEREAS, Landlord is the owner of the commercial building located at 750 Howard Street, San Francisco, CA 94103 (the "Building"); and
+
+WHEREAS, Tenant desires to lease a portion of the Building for its business operations, and Landlord is willing to lease such space to Tenant, subject to the terms and conditions set forth herein;
+
+NOW, THEREFORE, in consideration of the mutual covenants and agreements contained herein, and for other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the parties agree as follows:
+
+1. PREMISES
+
+1.1 Leased Premises. Landlord hereby leases to Tenant, and Tenant hereby leases from Landlord, approximately 5,000 square feet of office space on the 4th floor of the Building, as more particularly described in Exhibit A attached hereto (the "Premises").
+
+1.2 Common Areas. Tenant shall have the non-exclusive right to use, in common with other tenants of the Building, the common areas of the Building, including lobbies, elevators, stairways, restrooms, parking areas, and loading docks.
+
+2. TERM
+
+2.1 Initial Term. The initial term of this Lease shall be five (5) years, commencing on the Commencement Date and expiring on May 31, 2029 (the "Term"), unless sooner terminated in accordance with the provisions of this Lease.
+
+2.2 Renewal Option. Tenant shall have the option to renew this Lease for one (1) additional period of three (3) years (the "Renewal Term"), upon the same terms and conditions set forth herein, except that the Base Rent during the Renewal Term shall be adjusted to the then-current fair market rental rate. Tenant must exercise this option by providing written notice to Landlord no later than one hundred eighty (180) days prior to the expiration of the initial Term.
+
+3. RENT
+
+3.1 Base Rent. Tenant shall pay to Landlord a monthly base rent of $35,000 (the "Base Rent"), payable in advance on the first day of each calendar month during the Term. For the first partial month, if any, the Base Rent shall be prorated on a daily basis.
+
+3.2 Rent Escalation. The Base Rent shall increase by three percent (3%) per year on each anniversary of the Commencement Date. The escalation schedule is as follows:
+
+Year 1 (June 2024 - May 2025): $35,000/month ($420,000/year)
+Year 2 (June 2025 - May 2026): $36,050/month ($432,600/year)
+Year 3 (June 2026 - May 2027): $37,132/month ($445,578/year)
+Year 4 (June 2027 - May 2028): $38,245/month ($458,946/year)
+Year 5 (June 2028 - May 2029): $39,393/month ($472,714/year)
+
+3.3 Security Deposit. Upon execution of this Lease, Tenant shall deposit with Landlord the sum of $70,000 (the "Security Deposit") as security for the faithful performance of Tenant's obligations hereunder. The Security Deposit shall be returned to Tenant within thirty (30) days after the expiration or termination of this Lease, less any amounts applied to cure defaults.
+
+3.4 Late Payment. If any installment of Base Rent or additional rent is not received by Landlord within five (5) days after the due date, Tenant shall pay a late charge equal to five percent (5%) of the overdue amount. In addition, any amount not paid within thirty (30) days after the due date shall bear interest at the rate of one and one-half percent (1.5%) per month.
+
+3.5 Additional Rent. In addition to the Base Rent, Tenant shall pay its proportionate share (15%) of the Building's operating expenses, including property taxes, insurance, common area maintenance, and utilities for common areas ("Additional Rent").
+
+4. USE OF PREMISES
+
+4.1 Permitted Use. Tenant shall use the Premises solely for general office purposes, including but not limited to software development, data analysis, and administrative activities. Tenant shall not use the Premises for any illegal purpose or in any manner that would violate any applicable law, ordinance, or regulation.
+
+4.2 Compliance with Laws. Tenant shall comply with all applicable federal, state, and local laws, regulations, and ordinances in connection with Tenant's use of the Premises, including the Americans with Disabilities Act (ADA) and all applicable building codes and fire safety regulations.
+
+5. MAINTENANCE AND REPAIRS
+
+5.1 Landlord's Obligations. Landlord shall maintain and repair the structural elements of the Building, including the roof, exterior walls, foundation, and common areas, as well as the Building's HVAC, plumbing, and electrical systems.
+
+5.2 Tenant's Obligations. Tenant shall maintain the Premises in good condition and repair, including all interior surfaces, fixtures, and equipment installed by Tenant. Tenant shall promptly notify Landlord of any conditions requiring repair by Landlord.
+
+5.3 Alterations. Tenant shall not make any alterations, additions, or improvements to the Premises without the prior written consent of Landlord, which consent shall not be unreasonably withheld. All approved alterations shall become the property of Landlord upon termination of this Lease, unless Landlord requires Tenant to remove them and restore the Premises to their original condition.
+
+6. INSURANCE
+
+6.1 Tenant's Insurance. Tenant shall maintain, at Tenant's expense, throughout the Term: (a) commercial general liability insurance with limits of not less than $2,000,000 per occurrence and $5,000,000 in the aggregate; (b) property insurance covering Tenant's personal property, fixtures, and improvements; (c) workers' compensation insurance as required by law; and (d) business interruption insurance.
+
+6.2 Landlord as Additional Insured. Tenant's commercial general liability insurance policy shall name Landlord as an additional insured.
+
+6.3 Certificates of Insurance. Tenant shall provide Landlord with certificates of insurance evidencing the required coverage prior to the Commencement Date and upon each renewal of such policies.
+
+7. INDEMNIFICATION
+
+7.1 Tenant's Indemnification. Tenant shall indemnify, defend, and hold harmless Landlord and its officers, directors, employees, agents, and representatives from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or relating to: (a) Tenant's use of the Premises; (b) any breach of this Lease by Tenant; (c) any negligent or wrongful act or omission of Tenant or its employees, agents, or invitees; or (d) any injury to person or damage to property occurring in or about the Premises, except to the extent caused by Landlord's negligence or willful misconduct.
+
+7.2 Landlord's Indemnification. Landlord shall indemnify, defend, and hold harmless Tenant from and against any claims arising from Landlord's negligence or willful misconduct in the maintenance of the Building's common areas and structural elements.
+
+8. DEFAULT AND REMEDIES
+
+8.1 Events of Default. The following shall constitute events of default by Tenant: (a) failure to pay any installment of rent within ten (10) days after written notice from Landlord; (b) failure to perform any other obligation under this Lease within thirty (30) days after written notice from Landlord; (c) Tenant's bankruptcy, insolvency, or assignment for the benefit of creditors; or (d) abandonment of the Premises.
+
+8.2 Landlord's Remedies. Upon the occurrence of an event of default, Landlord may: (a) terminate this Lease and recover possession of the Premises; (b) re-enter the Premises and re-let the same; (c) recover from Tenant all unpaid rent and damages; or (d) pursue any other remedy available at law or in equity.
+
+8.3 Mitigation. In the event of Tenant's default, Landlord shall use commercially reasonable efforts to mitigate damages by re-letting the Premises.
+
+9. ASSIGNMENT AND SUBLETTING
+
+9.1 No Assignment Without Consent. Tenant shall not assign this Lease or sublet the Premises or any part thereof without the prior written consent of Landlord, which consent shall not be unreasonably withheld, conditioned, or delayed.
+
+9.2 Permitted Transfers. Notwithstanding Section 9.1, Tenant may assign this Lease without Landlord's consent in connection with: (a) a merger or consolidation of Tenant with another entity; (b) a sale of all or substantially all of Tenant's assets; or (c) a transfer to an affiliate or subsidiary of Tenant.
+
+10. FORCE MAJEURE
+
+10.1 Neither party shall be liable for any failure or delay in performing its obligations under this Lease (other than the payment of rent) to the extent that such failure or delay results from causes beyond the reasonable control of such party, including but not limited to acts of God, natural disasters, epidemics, pandemics, government orders, strikes, civil disturbances, or interruptions in utility services.
+
+11. GOVERNING LAW
+
+11.1 This Lease shall be governed by and construed in accordance with the laws of the State of California.
+
+12. NOTICES
+
+12.1 All notices required or permitted under this Lease shall be in writing and shall be deemed given when: (a) delivered personally; (b) sent by certified mail, return receipt requested; or (c) sent by nationally recognized overnight courier, to the addresses set forth in this Lease.
+
+13. GENERAL PROVISIONS
+
+13.1 Entire Agreement. This Lease, together with all exhibits and addenda attached hereto, constitutes the entire agreement between the parties.
+
+13.2 Amendment. This Lease may not be modified except by a written instrument signed by both parties.
+
+13.3 Severability. If any provision of this Lease is held invalid or unenforceable, the remaining provisions shall continue in full force and effect.
+
+13.4 Waiver. No waiver of any provision of this Lease shall be deemed a waiver of any other provision or of any subsequent breach of the same provision.
+
+13.5 Quiet Enjoyment. Landlord covenants that Tenant, upon paying the rent and performing its obligations hereunder, shall peaceably and quietly hold and enjoy the Premises during the Term without hindrance or interruption from Landlord.
+
+13.6 Subordination. This Lease shall be subordinate to any mortgage or deed of trust now or hereafter placed upon the Building, provided that the holder thereof agrees not to disturb Tenant's possession so long as Tenant is not in default.
+
+IN WITNESS WHEREOF, the parties have executed this Commercial Lease Agreement as of the date first written above.
+
+HARBOR PROPERTIES LLC
+By: ___________________________
+Name: Robert Williams
+Title: Managing Member
+Date: June 1, 2024
+
+QUANTUM ANALYTICS CORP.
+By: ___________________________
+Name: Lisa Tanaka
+Title: Chief Financial Officer
+Date: June 1, 2024

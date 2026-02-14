@@ -2,7 +2,7 @@ import logging
 
 from backend.models.schemas import Citation
 from backend.services.search_engine import semantic_search
-from backend.services.ollama_client import generate
+from backend.services.llm.manager import LLMManager
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +21,12 @@ def _build_context(citations: list[Citation]) -> str:
     return "\n".join(parts)
 
 
-async def ask(query: str, top_k: int = 5) -> tuple[str, list[Citation]]:
+async def ask(
+    query: str,
+    top_k: int = 5,
+    llm_manager: LLMManager | None = None,
+    org_id: str = "",
+) -> tuple[str, list[Citation]]:
     citations = semantic_search(query=query, top_k=top_k)
 
     if not citations:
@@ -37,5 +42,31 @@ QUESTION: {query}
 
 Provide a clear, detailed answer citing sources using [1], [2] notation. If the documents don't fully answer the question, state what information is available and what is missing."""
 
-    answer = await generate(prompt=prompt, system=SYSTEM_PROMPT)
+    if llm_manager:
+        answer = await llm_manager.generate(prompt=prompt, system=SYSTEM_PROMPT, org_id=org_id)
+    else:
+        # Fallback to direct Ollama (backward compat)
+        from backend.services.ollama_client import generate
+        answer = await generate(prompt=prompt, system=SYSTEM_PROMPT)
+
     return answer, citations
+
+
+async def ask_with_follow_ups(
+    query: str,
+    top_k: int = 5,
+    llm_manager: LLMManager | None = None,
+    org_id: str = "",
+) -> tuple[str, list[Citation], list[str]]:
+    """Like ask(), but also returns follow-up question suggestions."""
+    answer, citations = await ask(query, top_k, llm_manager, org_id)
+
+    follow_ups: list[str] = []
+    if llm_manager and answer and not answer.startswith("No relevant documents"):
+        try:
+            from backend.services.ai_features import generate_follow_ups
+            follow_ups = await generate_follow_ups(query, answer, llm_manager, org_id)
+        except Exception as e:
+            logger.warning(f"Follow-up generation failed (non-blocking): {e}")
+
+    return answer, citations, follow_ups

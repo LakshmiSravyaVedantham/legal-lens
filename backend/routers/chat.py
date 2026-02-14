@@ -1,28 +1,36 @@
 import logging
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends, Request
 
-from backend.models.schemas import ChatRequest, ChatResponse
-from backend.services.rag_engine import ask
-from backend.services.ollama_client import check_ollama_health
+from backend.models.schemas import ChatRequest, ChatResponseWithFollowUps
+from backend.services.rag_engine import ask_with_follow_ups
+from backend.services.llm.manager import get_llm_manager
+from backend.middleware.auth import get_current_user
+from backend.middleware.rate_limit import limiter, AI_LIMIT
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["chat"])
 
 
-@router.post("/chat", response_model=ChatResponse)
-async def chat(request: ChatRequest):
-    ollama_ok = await check_ollama_health()
-    if not ollama_ok:
-        raise HTTPException(
-            503,
-            detail="Ollama is not running. Please install Ollama (https://ollama.ai) "
-                   "and run: ollama pull llama3.1:8b"
-        )
+@router.post("/chat", response_model=ChatResponseWithFollowUps)
+@limiter.limit(AI_LIMIT)
+async def chat(request: Request, data: ChatRequest, user: dict = Depends(get_current_user)):
+    org_id = user["organization_id"]
+    manager = get_llm_manager()
 
     try:
-        answer, citations = await ask(query=request.query, top_k=request.top_k)
-        return ChatResponse(answer=answer, citations=citations, ollama_available=True)
+        answer, citations, follow_ups = await ask_with_follow_ups(
+            query=data.query,
+            top_k=data.top_k,
+            llm_manager=manager,
+            org_id=org_id,
+        )
+        return ChatResponseWithFollowUps(
+            answer=answer,
+            citations=citations,
+            ollama_available=True,
+            follow_up_suggestions=follow_ups,
+        )
     except ConnectionError as e:
         raise HTTPException(503, detail=str(e))
     except TimeoutError as e:
@@ -33,12 +41,16 @@ async def chat(request: ChatRequest):
 
 
 @router.get("/chat/status")
-async def chat_status():
-    ok = await check_ollama_health()
+async def chat_status(user: dict = Depends(get_current_user)):
+    org_id = user["organization_id"]
+    manager = get_llm_manager()
+    statuses = await manager.check_status(org_id)
+    any_ok = any(s["available"] for s in statuses)
+
     return {
-        "ollama_available": ok,
-        "message": "Ollama is running" if ok else (
-            "Ollama is not running. Install from https://ollama.ai "
-            "then run: ollama pull llama3.1:8b"
+        "ollama_available": any_ok,
+        "providers": statuses,
+        "message": "LLM provider available" if any_ok else (
+            "No LLM provider available. Configure one in Settings or start Ollama."
         ),
     }

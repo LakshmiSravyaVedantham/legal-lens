@@ -1,27 +1,19 @@
-"""Bookmarks and saved research for legal research workflow."""
-import json
-import logging
-from datetime import datetime
-from pathlib import Path
+"""Bookmarks and saved research — MongoDB implementation."""
 
-from backend.config import PROCESSED_DIR
+import logging
+import re
+from datetime import datetime, timezone
+
+from bson import ObjectId
+
+from backend.core.database import get_db
 
 logger = logging.getLogger(__name__)
 
-BOOKMARKS_FILE = PROCESSED_DIR / "bookmarks.json"
 
-
-def _load() -> list[dict]:
-    if BOOKMARKS_FILE.exists():
-        return json.loads(BOOKMARKS_FILE.read_text())
-    return []
-
-
-def _save(data: list[dict]):
-    BOOKMARKS_FILE.write_text(json.dumps(data, indent=2, default=str))
-
-
-def add_bookmark(
+async def add_bookmark(
+    user_id: str,
+    org_id: str,
     query: str,
     document_name: str,
     page: int | None,
@@ -29,32 +21,54 @@ def add_bookmark(
     note: str = "",
     matter: str = "",
 ) -> dict:
-    bookmarks = _load()
-    entry = {
-        "id": len(bookmarks) + 1,
+    db = get_db()
+    doc = {
+        "user_id": user_id,
+        "organization_id": org_id,
         "query": query,
         "document_name": document_name,
         "page": page,
         "text": text[:500],
         "note": note,
         "matter": matter,
-        "created_at": datetime.utcnow().isoformat(),
+        "created_at": datetime.now(timezone.utc),
     }
-    bookmarks.insert(0, entry)
-    _save(bookmarks)
-    return entry
+    result = await db.bookmarks.insert_one(doc)
+    doc["id"] = str(result.inserted_id)
+    doc["created_at"] = doc["created_at"].isoformat()
+    return doc
 
 
-def get_bookmarks(matter: str | None = None) -> list[dict]:
-    bookmarks = _load()
+async def get_bookmarks(org_id: str, matter: str | None = None) -> list[dict]:
+    db = get_db()
+    query: dict = {"organization_id": org_id}
     if matter:
-        bookmarks = [b for b in bookmarks if b.get("matter", "").lower() == matter.lower()]
-    return bookmarks
+        query["matter"] = {"$regex": f"^{re.escape(matter)}$", "$options": "i"}
+
+    cursor = db.bookmarks.find(query).sort("created_at", -1)
+    results = []
+    async for doc in cursor:
+        results.append({
+            "id": str(doc["_id"]),
+            "query": doc.get("query", ""),
+            "document_name": doc["document_name"],
+            "page": doc.get("page"),
+            "text": doc["text"],
+            "note": doc.get("note", ""),
+            "matter": doc.get("matter", ""),
+            "created_at": doc["created_at"].isoformat(),
+        })
+    return results
 
 
-def delete_bookmark(bookmark_id: int) -> bool:
-    bookmarks = _load()
-    before = len(bookmarks)
-    bookmarks = [b for b in bookmarks if b.get("id") != bookmark_id]
-    _save(bookmarks)
-    return len(bookmarks) < before
+async def delete_bookmark(bookmark_id: str, org_id: str) -> bool:
+    db = get_db()
+    try:
+        result = await db.bookmarks.delete_one({
+            "_id": ObjectId(bookmark_id),
+            "organization_id": org_id,
+        })
+        return result.deleted_count > 0
+    except Exception as exc:
+        logger.error("Failed to delete bookmark %s: %s", bookmark_id, exc)
+        return False

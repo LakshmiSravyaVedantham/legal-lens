@@ -1,206 +1,398 @@
-# LegalLens — Smart Document Search for Legal Professionals
+<div align="center">
 
-LegalLens is a fully local, AI-powered document search and analysis tool built for lawyers. Upload legal documents (PDF, DOCX, TXT), search across them with natural language, find standard clauses, extract key terms, and ask questions — all without any data leaving your machine.
+# LegalLens
+
+**Open-Source AI-Powered Document Intelligence for Legal Professionals**
+
+[![CI](https://github.com/LakshmiSravya123/legal-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/LakshmiSravya123/legal-lens/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-gold.svg)](LICENSE)
+[![Python 3.12+](https://img.shields.io/badge/Python-3.12+-3776ab.svg)](https://python.org)
+[![React 19](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6.svg)](https://typescriptlang.org)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ed.svg)](docker-compose.yml)
+
+*Upload contracts, pleadings, and legal documents. Search with natural language. Get AI-powered risk analysis, compliance checklists, and cited answers — all without data leaving your infrastructure.*
+
+**[Quick Start](#-quick-start)** · **[Features](#-features)** · **[Deploy](#-one-click-deploy)** · **[Architecture](#-architecture)** · **[API Docs](#-api-endpoints)** · **[Contributing](#-contributing)**
+
+---
+
+<!-- Replace with actual screenshot or demo GIF -->
+<!-- ![LegalLens Demo](docs/demo.gif) -->
+
+> **Screenshot placeholder** — Record a demo using the [DEMO.md](DEMO.md) script and add it here.
+> Recommended: Use a tool like [Kap](https://getkap.co/) or [ScreenToGif](https://www.screentogif.com/) to record a 30-60s GIF showing upload, search, and AI analysis.
+
+</div>
+
+---
+
+## Why LegalLens?
+
+| Problem | LegalLens Solution |
+|---------|-------------------|
+| Commercial legal AI costs $500–$1,200/user/month | **Free and open source** |
+| Firms can't send privileged documents to cloud AI | **Self-hosted, 100% local option** |
+| Locked into one AI provider | **Multi-LLM: Ollama, Claude, GPT, Azure** |
+| Black-box AI with no citations | **Every answer cites exact document + page** |
+| No control over infrastructure | **Docker Compose, one-command deploy** |
+
+---
+
+## One-Click Deploy
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/LakshmiSravya123/legal-lens)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/template?referralCode=legallens&repo=https://github.com/LakshmiSravya123/legal-lens)
+
+Or run locally with Docker:
+
+```bash
+git clone https://github.com/LakshmiSravya123/legal-lens.git
+cd legal-lens
+cp .env.example .env
+docker compose up --build
+# Open http://localhost
+```
+
+---
 
 ## Features
 
 ### Document Management
-- **Drag-and-drop upload** — PDF, DOCX, and TXT files (up to 50MB)
+- **Drag-and-drop upload** — PDF, DOCX, TXT (up to 50MB)
 - **Background processing** — uploads return instantly, indexing happens async
-- **Document viewer** — read extracted text page-by-page with a navigator sidebar
+- **Document viewer** — page-by-page text with sidebar navigator
+- **Client/matter tagging** — organize documents by case or client
 
-### Smart Search
-- **Semantic search** — natural language queries across all documents
-- **Keyword highlighting** — matching terms highlighted in gold
+### Semantic Search
+- **Natural language queries** across all documents
 - **Confidence scoring** — High / Medium / Low relevance badges
-- **Recent searches** — clickable chips for quick re-search
-- **Export to CSV** — download results for reporting
+- **Keyword highlighting** — matching terms highlighted in gold
+- **AI query expansion** — suggests legal synonyms and related terms
+- **Export to CSV** for reporting
+
+### AI Analysis (9 Features)
+Run any of these on any uploaded document:
+
+| Feature | What It Does |
+|---------|-------------|
+| **Summary** | Title, key points, parties involved |
+| **Risk Analysis** | Risk score (0-100), individual risks with severity |
+| **Compliance Checklist** | 15+ standard provisions, scored pass/fail/review |
+| **Obligations** | Duties, rights, restrictions with deadlines |
+| **Timeline** | Chronological events, deadlines, durations |
+| **Document Comparison** | Side-by-side diff of two documents |
+| **Legal Memo** | AI-generated brief from bookmarked research |
+| **Query Expansion** | Legal synonyms for better search |
+| **Document Q&A** | RAG with numbered [1][2] citations |
 
 ### Clause Finder
-Pre-built search library for 12 clause types lawyers look for daily:
-- Indemnification, Limitation of Liability, Termination, Force Majeure
-- Confidentiality/NDA, Governing Law, Intellectual Property
-- Representations & Warranties, Assignment, Notices, Non-Compete, Payment Terms
+Pre-built search templates for 12 clause types:
+Indemnification, Limitation of Liability, Termination, Force Majeure, Confidentiality/NDA, Governing Law, IP, Representations & Warranties, Assignment, Notices, Non-Compete, Payment Terms
 
-### Document Intelligence
-Auto-extracted from every uploaded document:
-- **Document classification** — Contract, Pleading, Memorandum, Correspondence, Court Order, Corporate, Regulatory
-- **Parties** — names extracted from agreement headers
+### Document Intelligence (Auto-Extracted)
+- **Document classification** — Contract, Pleading, Memorandum, Court Order, etc.
+- **Parties** — names from agreement headers
 - **Key dates** — effective dates, deadlines, expirations
 - **Monetary amounts** — dollar figures and currencies
 - **Defined terms** — capitalized terms in quotes
 - **Governing law** — jurisdiction detection
 - **Legal references** — statutes and case citations
 
-### Document Q&A (RAG)
-- Ask questions about your documents in natural language
-- Answers include clickable **[1][2] citation badges** linking to exact sources
-- Citation detail panel shows document name, page, paragraph, and relevance score
-- Suggested starter questions for common legal queries
-- Graceful fallback when Ollama is not running
+### Research & Memos
+- **Bookmark** any search result or clause finding
+- **Copy Citation** — one-click legal citation format
+- **Matter filtering** — organize by client/matter
+- **Export Memo** — plain-text research memorandum
+- **AI Brief** — generate structured legal memos from bookmarks
 
-### Research & Bookmarks
-- **Save to Research** — bookmark any search result or clause finding
-- **Copy Citation** — one-click copy in legal citation format (`Document Name, at p. X`)
-- **Copy for Brief** — formatted excerpt with citation
-- **Export Memo** — generate a plain-text research memorandum
-- **Matter filtering** — organize research by client/matter number
+### Platform
+- **Multi-tenant** — organization-based isolation with role-based access
+- **JWT auth** — access + refresh tokens, bcrypt passwords
+- **Rate limiting** — per-endpoint limits (auth, AI, upload, search)
+- **Audit logging** — who uploaded/deleted/analyzed what, with IP tracking
+- **Command palette** (Cmd+K) — spotlight-style navigation
+- **Analytics** — search trends, top queries, activity timeline
+- **100% local option** — all processing on your machine with Ollama
 
-### Client/Matter Tagging
-- Tag documents with Client Name and Matter Number
-- Filter research by matter
+---
 
-### Additional
-- **Command Palette** (⌘K) — spotlight-style navigation and search
-- **Analytics** — search trends, top queries bar chart, activity timeline, storage usage
-- **System Info** — environment details, service status, capability matrix
-- **Toast notifications** — success/error feedback on all actions
-- **100% local** — no data sent to any external service
+## Architecture
 
-## Tech Stack
+```
+┌──────────────────────────────────────────────────────────┐
+│                        Frontend                          │
+│              React 19 + TypeScript + Tailwind            │
+│         Dashboard · Search · Q&A · AI Insights           │
+└────────────────────────┬─────────────────────────────────┘
+                         │ REST API
+┌────────────────────────┴─────────────────────────────────┐
+│                     FastAPI Backend                       │
+│                                                          │
+│  ┌─────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  │
+│  │ Upload  │  │ Semantic │  │ RAG Q&A  │  │    AI    │  │
+│  │Pipeline │  │ Search   │  │ Engine   │  │ Analysis │  │
+│  └────┬────┘  └────┬─────┘  └────┬─────┘  └────┬─────┘  │
+│       │            │             │              │        │
+│  ┌────┴────────────┴─────────────┴──────────────┴────┐   │
+│  │         sentence-transformers (384-dim)            │   │
+│  └───────────────────────┬───────────────────────────┘   │
+└──────────────────────────┼───────────────────────────────┘
+                           │
+          ┌────────────────┼────────────────┐
+          │                │                │
+   ┌──────┴──────┐  ┌─────┴─────┐  ┌──────┴──────┐
+   │  ChromaDB   │  │  MongoDB  │  │  LLM Layer  │
+   │  (vectors)  │  │ (metadata │  │  Ollama /    │
+   │             │  │  + auth)  │  │  Claude /    │
+   │             │  │           │  │  GPT / Azure │
+   └─────────────┘  └───────────┘  └─────────────┘
+```
 
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 19 + TypeScript + Vite + Tailwind CSS 4 |
-| Backend | Python FastAPI |
-| LLM | Ollama (Llama 3.1 8B) — fully local |
-| Embeddings | sentence-transformers (`all-MiniLM-L6-v2`, 80MB) |
-| Vector DB | ChromaDB (local SQLite-based) |
-| Doc Processing | PyPDF2, python-docx |
+### Tech Stack
+
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| Frontend | React 19 + TypeScript + Vite + Tailwind CSS 4 | Type-safe, fast UI |
+| Backend | Python FastAPI (async) | High-performance API |
+| Database | MongoDB (Motor async driver) | Multi-tenant data |
+| Vector DB | ChromaDB | Semantic search index |
+| Embeddings | sentence-transformers (`all-MiniLM-L6-v2`) | 384-dim vectors, 80MB |
+| LLM | Ollama / Anthropic / OpenAI / Azure | Pluggable with fallback |
+| Auth | JWT + bcrypt + Fernet encryption | Secure, stateless |
+| Deploy | Docker Compose | One-command setup |
+
+---
 
 ## Quick Start
 
-### Prerequisites
-- Python 3.11+
-- Node.js 18+
-- (Optional) [Ollama](https://ollama.ai) for Document Q&A
+### Option 1: Docker (Recommended)
 
-### Setup
+```bash
+git clone https://github.com/LakshmiSravya123/legal-lens.git
+cd legal-lens
+cp .env.example .env       # Edit secrets before production use
+docker compose up --build   # Start all services
+# Open http://localhost
+```
+
+With local LLM (Ollama):
+```bash
+docker compose --profile ollama up --build
+```
+
+### Option 2: Local Development
+
+**Prerequisites:** Python 3.11+, Node.js 18+, MongoDB running locally
 
 ```bash
 # Clone
-git clone https://github.com/YOUR_USERNAME/legal-lens.git
+git clone https://github.com/LakshmiSravya123/legal-lens.git
 cd legal-lens
 
 # Backend
-python3 -m venv .venv
-source .venv/bin/activate
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r backend/requirements.txt
-
-# Frontend
-cd frontend
-npm install
-cd ..
-```
-
-### Run
-
-```bash
-# Terminal 1 — Backend
-source .venv/bin/activate
 uvicorn backend.main:app --reload --port 8000
 
-# Terminal 2 — Frontend
-cd frontend
-npm run dev
+# Frontend (new terminal)
+cd frontend && npm install && npm run dev
+
+# Open http://localhost:5173
 ```
 
-Open **http://localhost:5173**
+### Option 3: Try the Demo
 
-### Optional: Enable Document Q&A
+Upload the sample documents from `demo/sample-documents/` to explore features without your own files.
 
 ```bash
-# Install Ollama from https://ollama.ai, then:
-ollama pull llama3.1:8b
+# After starting the app, register an account, then:
+# 1. Go to Documents page
+# 2. Upload the .txt files from demo/sample-documents/
+# 3. Wait for processing, then try Search, Clauses, and AI Analysis
 ```
 
-Search works without Ollama. Document Q&A requires it.
+### Enable AI Features
+
+Search works without any LLM. For AI analysis and Q&A, configure at least one provider:
+
+| Provider | Setup |
+|----------|-------|
+| **Ollama** (free, local) | Install from [ollama.ai](https://ollama.ai), run `ollama pull llama3.1:8b` |
+| **Anthropic Claude** | Set `ANTHROPIC_API_KEY` in `.env` |
+| **OpenAI GPT** | Set `OPENAI_API_KEY` in `.env` |
+| **Azure OpenAI** | Set `AZURE_OPENAI_*` vars in `.env` |
+
+Or configure per-organization via **Settings > LLM Providers** in the UI.
+
+---
+
+## API Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/api/auth/register` | Register user + organization |
+| POST | `/api/auth/login` | Login, returns JWT tokens |
+| POST | `/api/documents/upload` | Upload document (async processing) |
+| GET | `/api/documents` | List organization documents |
+| GET | `/api/documents/:id/content` | View extracted text by page |
+| DELETE | `/api/documents/:id` | Delete document + vectors |
+| POST | `/api/search` | Semantic search |
+| POST | `/api/chat` | RAG Q&A with citations |
+| GET | `/api/clauses` | List clause types |
+| GET | `/api/clauses/:id/search` | Find clauses across documents |
+| POST | `/api/ai/documents/:id/analyze` | Run AI analysis (summary, risks, etc.) |
+| POST | `/api/ai/compare` | Compare two documents |
+| POST | `/api/ai/brief` | Generate legal memo |
+| POST | `/api/bookmarks` | Save research excerpt |
+| GET | `/api/bookmarks` | List saved research |
+| GET | `/api/stats` | Dashboard statistics |
+| GET | `/api/analytics` | Search trends + storage |
+| GET | `/api/health` | Health check |
+
+Full interactive docs at `http://localhost:8000/docs` (Swagger UI).
+
+---
 
 ## Project Structure
 
 ```
 legal-lens/
 ├── backend/
-│   ├── main.py                    # FastAPI app, CORS, lifespan
-│   ├── config.py                  # Centralized settings
-│   ├── models/schemas.py          # Pydantic models
-│   ├── routers/
-│   │   ├── documents.py           # Upload, list, delete, content viewer, stats
-│   │   ├── search.py              # Semantic search endpoint
-│   │   ├── chat.py                # RAG Q&A via Ollama
-│   │   ├── analytics.py           # Search analytics, activity log, system info
-│   │   └── legal.py               # Key terms, clause library, bookmarks, matter tags
-│   ├── services/
-│   │   ├── document_processor.py  # PDF, DOCX, TXT extraction
-│   │   ├── chunker.py             # Sentence-aware chunking (200 words, 50 overlap)
-│   │   ├── embeddings.py          # sentence-transformers wrapper
-│   │   ├── vector_store.py        # ChromaDB wrapper
-│   │   ├── search_engine.py       # Semantic search + confidence scoring
-│   │   ├── ollama_client.py       # Ollama HTTP client
-│   │   ├── rag_engine.py          # Retrieve → prompt → generate → cite
-│   │   ├── key_terms.py           # Legal term extraction + document classification
-│   │   ├── clause_library.py      # Pre-built clause search definitions
-│   │   ├── bookmarks.py           # Saved research management
-│   │   └── activity_tracker.py    # Search & activity logging
-│   ├── data/
-│   │   ├── uploads/               # Original uploaded files
-│   │   ├── processed/             # Metadata JSON files
-│   │   └── chroma_db/             # Vector index (SQLite)
-│   └── requirements.txt
+│   ├── main.py                      # FastAPI app entry point
+│   ├── core/
+│   │   ├── settings.py              # Environment configuration
+│   │   ├── database.py              # MongoDB connection
+│   │   ├── security.py              # Password hashing, JWT
+│   │   └── encryption.py            # Fernet API key encryption
+│   ├── routers/                     # API endpoints
+│   │   ├── auth.py, documents.py, search.py, chat.py
+│   │   ├── ai.py, legal.py, analytics.py, audit.py
+│   │   └── health.py, llm_config.py
+│   ├── services/                    # Business logic
+│   │   ├── document_processor.py    # PDF/DOCX/TXT extraction
+│   │   ├── chunker.py              # Sentence-aware chunking
+│   │   ├── embeddings.py           # sentence-transformers
+│   │   ├── vector_store.py         # ChromaDB operations
+│   │   ├── search_engine.py        # Semantic search
+│   │   ├── rag_engine.py           # RAG Q&A with citations
+│   │   ├── ai_features.py          # 9 AI analysis functions
+│   │   ├── key_terms.py            # Legal term extraction
+│   │   ├── clause_library.py       # 12 clause search templates
+│   │   ├── bookmarks.py            # Research management
+│   │   └── llm/                    # Multi-provider LLM layer
+│   │       ├── manager.py          # Fallback chain orchestration
+│   │       ├── ollama.py, anthropic.py, openai_provider.py
+│   │       └── base.py             # Abstract LLM interface
+│   ├── middleware/                   # Auth, rate limiting, logging
+│   ├── models/                      # Pydantic schemas
+│   └── tests/                       # pytest suite (30+ tests)
 ├── frontend/
 │   ├── src/
-│   │   ├── App.tsx                # Router setup
-│   │   ├── types/index.ts         # TypeScript interfaces
-│   │   ├── lib/api.ts             # API client
-│   │   ├── components/
-│   │   │   ├── Layout.tsx         # Sidebar + main content
-│   │   │   ├── CommandPalette.tsx  # ⌘K spotlight search
-│   │   │   └── Toast.tsx          # Notification system
-│   │   └── pages/
-│   │       ├── Dashboard.tsx      # Stats, quick search, activity
-│   │       ├── Documents.tsx      # Upload + document table
-│   │       ├── DocumentViewer.tsx # Page viewer + intelligence panel
-│   │       ├── SearchPage.tsx     # Smart search + results
-│   │       ├── ClauseLibrary.tsx  # Clause finder
-│   │       ├── Chat.tsx           # RAG Q&A with citations
-│   │       ├── ResearchPage.tsx   # Bookmarks + memo export
-│   │       ├── AnalyticsPage.tsx  # Search trends + activity
-│   │       └── SystemPage.tsx     # Environment + services
+│   │   ├── pages/                   # Dashboard, Documents, Search, Chat, AI, etc.
+│   │   ├── components/              # Layout, CommandPalette, ErrorBoundary, etc.
+│   │   ├── lib/                     # API client, auth helpers
+│   │   └── types/                   # TypeScript interfaces
 │   └── package.json
-├── .gitignore
-└── README.md
+├── docker/
+│   ├── Dockerfile.backend
+│   ├── Dockerfile.frontend
+│   ├── nginx.conf                   # Reverse proxy + security headers
+│   └── mongo-init.js                # DB initialization
+├── demo/
+│   └── sample-documents/            # Sample legal docs for testing
+├── docker-compose.yml
+├── render.yaml                      # One-click Render deploy
+├── railway.json                     # One-click Railway deploy
+├── Makefile                         # Convenience commands
+└── .github/workflows/ci.yml        # CI: lint, test, build, Docker
 ```
 
-## API Endpoints
+---
 
-| Method | Path | Description |
-|--------|------|-------------|
-| POST | `/api/documents/upload` | Upload document (background processing) |
-| GET | `/api/documents` | List all documents |
-| GET | `/api/documents/:id/content` | View extracted text |
-| GET | `/api/documents/:id/key-terms` | Extract parties, dates, amounts |
-| DELETE | `/api/documents/:id` | Delete document + vectors |
-| POST | `/api/search` | Semantic search |
-| GET | `/api/clauses` | List clause types |
-| GET | `/api/clauses/:id/search` | Find clauses across documents |
-| POST | `/api/chat` | RAG Q&A via Ollama |
-| GET | `/api/chat/status` | Check Ollama availability |
-| POST | `/api/bookmarks` | Save research excerpt |
-| GET | `/api/bookmarks` | List saved research |
-| PUT | `/api/documents/:id/matter` | Tag with client/matter |
-| GET | `/api/stats` | Dashboard statistics |
-| GET | `/api/analytics` | Search trends + storage |
+## Makefile Commands
+
+```bash
+make up        # Start all services
+make ollama    # Start with local LLM
+make down      # Stop services
+make build     # Rebuild containers
+make logs      # Follow all logs
+make status    # Show service health
+make clean     # Remove everything (incl. volumes)
+make admin     # Create admin user
+make setup     # Copy .env.example → .env
+```
+
+---
 
 ## Design Decisions
 
-- **No LangChain** — direct integration is simpler, more debuggable
-- **No "AI" in the UI** — positioned as "Smart Search" and "Document Intelligence"
-- **Always show citations** — every result links to exact document, page, paragraph
-- **Graceful degradation** — search works without Ollama; chat shows clear setup instructions
-- **Single ChromaDB collection** — metadata filtering for scoping, simpler than multi-collection
-- **Background processing** — uploads return immediately, processing is async
-- **All local** — zero external API calls, suitable for privileged/confidential documents
+- **No LangChain** — direct LLM integration is simpler and more debuggable
+- **Multi-tenant from day one** — organization-based isolation, role-based access
+- **Cache-first AI** — analyses cached in MongoDB, avoids redundant LLM calls
+- **LLM fallback chains** — tries providers in order until one succeeds
+- **Background processing** — uploads return instantly, heavy work is async
+- **Always cite sources** — every AI answer links to exact document + page
+- **Graceful degradation** — search works without any LLM; Q&A shows clear setup instructions
+- **No vendor lock-in** — works with Ollama (free, local), Claude, GPT, or Azure
+
+---
+
+## Comparison with Commercial Tools
+
+| Feature | LegalLens | Harvey AI | CoCounsel | Luminance |
+|---------|:---------:|:---------:|:---------:|:---------:|
+| **Price** | Free | ~$1,200/user/mo | ~$250/mo bundle | Enterprise |
+| Semantic Search | ✓ | ✓ | ✓ | ✓ |
+| RAG Q&A with Citations | ✓ | ✓ | ✓ | — |
+| Risk Analysis | ✓ | ✓ | — | ✓ |
+| Clause Finder | ✓ | — | — | ✓ |
+| Document Comparison | ✓ | ✓ | — | ✓ |
+| Legal Memo Generation | ✓ | ✓ | ✓ | — |
+| 100% Data Privacy | ✓ | — | — | Partial |
+| Works Offline | ✓ | — | — | — |
+| Multi-LLM Support | ✓ | — | — | — |
+| Self-Hosted | ✓ | — | — | — |
+| Open Source | ✓ | — | — | — |
+
+---
+
+## Contributing
+
+Contributions are welcome! Here's how to get started:
+
+1. Fork the repo and create a feature branch
+2. Set up local development (see [Quick Start](#option-2-local-development))
+3. Run tests before submitting:
+   ```bash
+   # Backend
+   python -m pytest backend/tests/ -v
+
+   # Frontend
+   cd frontend && npm test && npm run build
+   ```
+4. Open a PR with a clear description of your changes
+
+### Areas We'd Love Help With
+- OCR for scanned PDFs (Tesseract/PaddleOCR integration)
+- Hybrid search (BM25 + semantic)
+- Additional clause types and jurisdiction-specific templates
+- Accessibility improvements
+- Documentation and tutorials
+
+---
 
 ## License
 
-MIT
+MIT — use it freely for personal and commercial projects.
+
+---
+
+<div align="center">
+
+**Built with privacy in mind. No data leaves your infrastructure.**
+
+[Report Bug](https://github.com/LakshmiSravya123/legal-lens/issues) · [Request Feature](https://github.com/LakshmiSravya123/legal-lens/issues) · [Discussions](https://github.com/LakshmiSravya123/legal-lens/discussions)
+
+</div>

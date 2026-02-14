@@ -5,25 +5,39 @@ from typing import Optional
 
 import chromadb
 
-from backend.config import CHROMA_DIR, CHROMA_COLLECTION_NAME
+from backend.core.settings import get_settings
 from backend.services.chunker import Chunk
 from backend.services.embeddings import embed_texts
 
 logger = logging.getLogger(__name__)
 
-_client: Optional[chromadb.PersistentClient] = None
+_client: Optional[chromadb.ClientAPI] = None
 _collection: Optional[chromadb.Collection] = None
 
 
 def _get_collection() -> chromadb.Collection:
     global _client, _collection
     if _collection is None:
-        _client = chromadb.PersistentClient(path=str(CHROMA_DIR))
+        settings = get_settings()
+
+        if settings.use_chroma_http:
+            _client = chromadb.HttpClient(
+                host=settings.chroma_host,
+                port=settings.chroma_port,
+            )
+            logger.info(f"ChromaDB HTTP client → {settings.chroma_host}:{settings.chroma_port}")
+        else:
+            # Local persistent client (dev mode)
+            chroma_dir = settings.base_dir / "data" / "chroma_db"
+            chroma_dir.mkdir(parents=True, exist_ok=True)
+            _client = chromadb.PersistentClient(path=str(chroma_dir))
+            logger.info(f"ChromaDB PersistentClient → {chroma_dir}")
+
         _collection = _client.get_or_create_collection(
-            name=CHROMA_COLLECTION_NAME,
+            name=settings.chroma_collection_name,
             metadata={"hnsw:space": "cosine"},
         )
-        logger.info(f"ChromaDB collection '{CHROMA_COLLECTION_NAME}' ready with {_collection.count()} items")
+        logger.info(f"ChromaDB collection '{settings.chroma_collection_name}' ready with {_collection.count()} items")
     return _collection
 
 

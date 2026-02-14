@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Bookmark, FileText, Trash2, Copy, Filter } from 'lucide-react';
+import { Bookmark, FileText, Trash2, Copy, Filter, Sparkles, X } from 'lucide-react';
 import { api } from '../lib/api';
 import { useToast } from '../components/Toast';
-import type { Bookmark as BookmarkType } from '../types';
+import type { Bookmark as BookmarkType, AIBrief } from '../types';
 
 function timeAgo(timestamp: string): string {
   const diff = Date.now() - new Date(timestamp + 'Z').getTime();
@@ -17,6 +17,11 @@ function timeAgo(timestamp: string): string {
 export default function ResearchPage() {
   const [bookmarks, setBookmarks] = useState<BookmarkType[]>([]);
   const [matterFilter, setMatterFilter] = useState('');
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+  const [briefTopic, setBriefTopic] = useState('');
+  const [showBriefModal, setShowBriefModal] = useState(false);
+  const [brief, setBrief] = useState<AIBrief | null>(null);
+  const [briefLoading, setBriefLoading] = useState(false);
   const { toast } = useToast();
 
   const load = () => {
@@ -66,6 +71,32 @@ export default function ResearchPage() {
     toast('success', 'Memo exported');
   };
 
+  const toggleSelect = (id: number) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  };
+
+  const handleGenerateBrief = async () => {
+    if (!briefTopic.trim()) { toast('error', 'Enter a topic'); return; }
+    const selected = bookmarks.filter((b) => selectedIds.has(b.id));
+    if (selected.length === 0) { toast('error', 'Select at least one bookmark'); return; }
+    setBriefLoading(true);
+    try {
+      const result = await api.generateBrief(
+        briefTopic,
+        selected.map((b) => ({ document_name: b.document_name, page: b.page, text: b.text })),
+      );
+      setBrief(result);
+    } catch (e: any) {
+      toast('error', e.message);
+    } finally {
+      setBriefLoading(false);
+    }
+  };
+
   // Get unique matters for filter
   const matters = [...new Set(bookmarks.map((b) => b.matter).filter(Boolean))];
 
@@ -76,14 +107,24 @@ export default function ResearchPage() {
           <h1 className="text-2xl font-bold text-navy-900">Research</h1>
           <p className="text-navy-500 mt-1">Saved excerpts, citations, and notes for your matters</p>
         </div>
-        {bookmarks.length > 0 && (
-          <button
-            onClick={exportMemo}
-            className="flex items-center gap-2 px-4 py-2 text-sm bg-navy-800 text-white rounded-lg hover:bg-navy-700 transition-colors"
-          >
-            Export Memo
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {bookmarks.length > 0 && selectedIds.size > 0 && (
+            <button
+              onClick={() => setShowBriefModal(true)}
+              className="flex items-center gap-2 px-4 py-2 text-sm bg-gold-500 text-navy-900 font-medium rounded-lg hover:bg-gold-400 transition-colors"
+            >
+              <Sparkles size={14} /> Generate AI Brief ({selectedIds.size})
+            </button>
+          )}
+          {bookmarks.length > 0 && (
+            <button
+              onClick={exportMemo}
+              className="flex items-center gap-2 px-4 py-2 text-sm bg-navy-800 text-white rounded-lg hover:bg-navy-700 transition-colors"
+            >
+              Export Memo
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Matter filter */}
@@ -128,6 +169,12 @@ export default function ResearchPage() {
             <div key={b.id} className="bg-white border border-navy-200 rounded-lg shadow-sm">
               <div className="flex items-center justify-between px-5 py-3 border-b border-navy-50">
                 <div className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    checked={selectedIds.has(b.id)}
+                    onChange={() => toggleSelect(b.id)}
+                    className="rounded border-navy-300 text-gold-500 focus:ring-gold-400"
+                  />
                   <FileText size={14} className="text-navy-500" />
                   <span className="text-sm font-semibold text-navy-800">{b.document_name}</span>
                   {b.page && <span className="text-xs text-navy-400">p. {b.page}</span>}
@@ -158,6 +205,67 @@ export default function ResearchPage() {
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* AI Brief Modal */}
+      {showBriefModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white rounded-xl shadow-xl max-w-3xl w-full max-h-[85vh] overflow-y-auto">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-navy-100">
+              <div className="flex items-center gap-2">
+                <Sparkles size={18} className="text-gold-500" />
+                <h2 className="text-lg font-bold text-navy-900">Generate AI Brief</h2>
+              </div>
+              <button onClick={() => { setShowBriefModal(false); setBrief(null); }} className="text-navy-400 hover:text-navy-600">
+                <X size={20} />
+              </button>
+            </div>
+            <div className="p-6 space-y-4">
+              {!brief ? (
+                <>
+                  <div>
+                    <label className="text-sm font-medium text-navy-700 mb-1 block">Topic / Legal Question</label>
+                    <input
+                      type="text"
+                      value={briefTopic}
+                      onChange={(e) => setBriefTopic(e.target.value)}
+                      placeholder="e.g. Analysis of indemnification provisions across agreements"
+                      className="w-full px-4 py-2.5 border border-navy-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gold-400"
+                    />
+                  </div>
+                  <p className="text-sm text-navy-500">{selectedIds.size} bookmark{selectedIds.size !== 1 ? 's' : ''} selected as research sources.</p>
+                  <button
+                    onClick={handleGenerateBrief}
+                    disabled={briefLoading}
+                    className="flex items-center gap-2 px-6 py-2.5 text-sm bg-gold-500 text-navy-900 font-medium rounded-lg hover:bg-gold-400 disabled:opacity-50 transition-colors"
+                  >
+                    <Sparkles size={14} /> {briefLoading ? 'Generating...' : 'Generate Brief'}
+                  </button>
+                </>
+              ) : (
+                <div className="space-y-4 text-sm text-navy-700">
+                  <h3 className="text-lg font-bold text-navy-900">{brief.title}</h3>
+                  <div>
+                    <h4 className="text-xs font-semibold text-navy-500 uppercase tracking-wider mb-1">Issue Presented</h4>
+                    <p>{brief.issue}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-semibold text-navy-500 uppercase tracking-wider mb-1">Brief Answer</h4>
+                    <p>{brief.brief_answer}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-semibold text-navy-500 uppercase tracking-wider mb-1">Discussion</h4>
+                    <p className="whitespace-pre-wrap leading-relaxed">{brief.discussion}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-semibold text-navy-500 uppercase tracking-wider mb-1">Conclusion</h4>
+                    <p>{brief.conclusion}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>

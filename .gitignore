@@ -26,3 +26,12 @@ backend/data/chroma_db/
 
 # Environment
 .env
+
+# Docker
+docker-compose.override.yml
+
+# Test / Coverage
+.coverage
+htmlcov/
+coverage.xml
+.pytest_cache/

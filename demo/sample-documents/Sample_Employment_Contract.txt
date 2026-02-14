@@ -1,0 +1,110 @@
+EMPLOYMENT AGREEMENT
+
+This Employment Agreement (the "Agreement") is entered into as of March 1, 2024 (the "Effective Date") by and between:
+
+TechForward Inc., a Delaware corporation with its principal office at 500 Market Street, Suite 1200, San Francisco, CA 94105 ("Employer" or the "Company"), and
+
+Alexandra Rivera ("Employee").
+
+RECITALS
+
+WHEREAS, the Company desires to employ Employee, and Employee desires to accept such employment, on the terms and conditions set forth herein;
+
+NOW, THEREFORE, in consideration of the mutual promises, covenants, and agreements contained herein, and for other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the parties agree as follows:
+
+1. POSITION AND DUTIES
+
+1.1 Position. The Company hereby employs Employee as Senior Software Engineer, reporting to the Vice President of Engineering.
+
+1.2 Duties. Employee shall perform all duties and responsibilities customarily associated with the position, as well as such other duties as may be reasonably assigned by the Company from time to time. Employee shall devote full-time professional efforts to the performance of duties hereunder.
+
+1.3 Location. Employee's primary work location shall be the Company's San Francisco office, with the option to work remotely up to three (3) days per week, subject to the Company's remote work policy as may be amended from time to time.
+
+2. COMPENSATION
+
+2.1 Base Salary. The Company shall pay Employee an annual base salary of $185,000 (the "Base Salary"), payable in accordance with the Company's standard payroll schedule, less applicable withholdings and deductions.
+
+2.2 Annual Bonus. Employee shall be eligible for an annual performance bonus of up to 20% of the Base Salary (the "Target Bonus"), based on individual and company performance metrics established by the Company. The bonus, if earned, shall be paid no later than March 15 of the year following the performance year.
+
+2.3 Equity. Subject to approval by the Company's Board of Directors, Employee shall be granted a stock option to purchase 50,000 shares of the Company's common stock at fair market value on the date of grant. The option shall vest over four (4) years, with 25% vesting on the first anniversary of the Effective Date and the remainder vesting monthly over the subsequent thirty-six (36) months.
+
+2.4 Benefits. Employee shall be eligible to participate in all employee benefit programs offered by the Company, including health insurance, dental and vision coverage, 401(k) retirement plan (with 4% employer match), life insurance, and paid time off, subject to the terms and conditions of such programs.
+
+2.5 Paid Time Off. Employee shall receive twenty (20) days of paid time off per year, in addition to Company-observed holidays.
+
+3. TERM AND TERMINATION
+
+3.1 At-Will Employment. Employee's employment with the Company is "at-will," meaning either party may terminate the employment relationship at any time, with or without cause, and with or without notice.
+
+3.2 Termination for Cause. The Company may terminate Employee's employment immediately for Cause. "Cause" means: (a) material breach of this Agreement; (b) conviction of, or plea of guilty or nolo contendere to, a felony or any crime involving moral turpitude; (c) willful misconduct or gross negligence in the performance of duties; (d) refusal to perform assigned duties after written notice; or (e) violation of the Company's material policies.
+
+3.3 Termination Without Cause. If the Company terminates Employee's employment without Cause, or if Employee resigns for Good Reason (as defined in Section 3.4), the Company shall provide Employee with: (a) continued payment of Base Salary for a period of six (6) months following the termination date (the "Severance Period"); (b) payment of a pro-rated Target Bonus for the year of termination; (c) continuation of health benefits during the Severance Period at the Company's expense; and (d) acceleration of vesting of any unvested stock options that would have vested during the Severance Period.
+
+3.4 Good Reason. "Good Reason" means the occurrence of any of the following without Employee's written consent: (a) a material reduction in Base Salary (greater than 10%); (b) a material diminution in Employee's title, authority, or responsibilities; (c) relocation of Employee's primary work location by more than 50 miles; or (d) a material breach of this Agreement by the Company.
+
+3.5 Resignation. Employee may resign at any time by providing at least thirty (30) days' written notice to the Company.
+
+4. CONFIDENTIALITY
+
+4.1 Employee acknowledges that, during the course of employment, Employee will have access to and become acquainted with Confidential Information belonging to the Company.
+
+4.2 "Confidential Information" includes, but is not limited to: trade secrets, proprietary software and source code, algorithms, customer data, business strategies, financial information, product roadmaps, and any other information designated as confidential by the Company.
+
+4.3 Employee agrees to hold all Confidential Information in strict confidence and not to disclose, publish, or otherwise reveal any Confidential Information to any third party during or after employment, except as required in the performance of duties or with the Company's prior written consent.
+
+5. INTELLECTUAL PROPERTY
+
+5.1 Work Product. All inventions, discoveries, designs, software, works of authorship, and other intellectual property conceived, developed, or created by Employee during the term of employment, whether or not during working hours, that relate to the Company's business or result from the use of Company resources (collectively, "Work Product"), shall be the sole and exclusive property of the Company.
+
+5.2 Assignment. Employee hereby irrevocably assigns to the Company all right, title, and interest in and to all Work Product, including all patent, copyright, trademark, and trade secret rights therein.
+
+5.3 Prior Inventions. Employee has disclosed on Exhibit A attached hereto all inventions, if any, that Employee owns or has an interest in prior to the Effective Date ("Prior Inventions"). Employee agrees that Prior Inventions are excluded from the scope of this Agreement.
+
+6. NON-COMPETITION AND NON-SOLICITATION
+
+6.1 Non-Competition. During the term of employment and for a period of twelve (12) months following termination, Employee shall not, directly or indirectly, engage in, own, manage, operate, or participate in any business that competes with the Company's business within the United States. This provision shall apply only to the extent permitted by applicable law.
+
+6.2 Non-Solicitation of Employees. During the term of employment and for a period of twelve (12) months following termination, Employee shall not, directly or indirectly, solicit, recruit, or hire any employee of the Company, or encourage any employee to leave the Company's employ.
+
+6.3 Non-Solicitation of Customers. During the term of employment and for a period of twelve (12) months following termination, Employee shall not, directly or indirectly, solicit or attempt to solicit any customer or client of the Company for the purpose of offering products or services that compete with the Company's offerings.
+
+7. REPRESENTATIONS AND WARRANTIES
+
+7.1 Employee represents and warrants that: (a) Employee is free to enter into this Agreement and that Employee's performance hereunder will not conflict with or result in a breach of any other agreement to which Employee is a party; (b) Employee has not brought and will not bring to the Company any materials, documents, or information belonging to a former employer that are not generally available to the public; and (c) all information provided by Employee to the Company during the hiring process is true and accurate.
+
+8. DISPUTE RESOLUTION
+
+8.1 Any dispute arising out of or relating to this Agreement shall first be submitted to mediation in San Francisco, California. If mediation is unsuccessful, the dispute shall be resolved through binding arbitration in accordance with the rules of JAMS, before a single arbitrator.
+
+8.2 The prevailing party in any arbitration shall be entitled to recover reasonable attorneys' fees and costs from the non-prevailing party.
+
+9. GOVERNING LAW
+
+9.1 This Agreement shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of laws provisions.
+
+10. GENERAL PROVISIONS
+
+10.1 Entire Agreement. This Agreement, together with any exhibits attached hereto, constitutes the entire agreement between the parties regarding the subject matter hereof.
+
+10.2 Amendment. This Agreement may not be amended except by a written instrument signed by both parties.
+
+10.3 Severability. If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions shall continue in full force and effect.
+
+10.4 Waiver. No waiver of any breach of this Agreement shall constitute a waiver of any subsequent breach.
+
+10.5 Notices. All notices shall be in writing and delivered to the addresses set forth above, or to such other address as either party may designate in writing.
+
+10.6 Counterparts. This Agreement may be executed in counterparts.
+
+IN WITNESS WHEREOF, the parties have executed this Employment Agreement as of the Effective Date.
+
+TECHFORWARD INC.
+By: ___________________________
+Name: David Park
+Title: Chief Executive Officer
+Date: March 1, 2024
+
+EMPLOYEE
+By: ___________________________
+Name: Alexandra Rivera
+Date: March 1, 2024

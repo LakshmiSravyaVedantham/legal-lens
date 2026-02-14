@@ -1,0 +1,99 @@
+MUTUAL NON-DISCLOSURE AGREEMENT
+
+This Mutual Non-Disclosure Agreement (the "Agreement") is entered into as of January 15, 2024 (the "Effective Date") by and between:
+
+Acme Technologies Inc., a Delaware corporation with its principal office at 100 Innovation Drive, San Francisco, CA 94105 (hereinafter referred to as "Acme" or the "Disclosing Party"), and
+
+Beta Solutions LLC, a California limited liability company with its principal office at 200 Market Street, Suite 400, San Francisco, CA 94107 (hereinafter referred to as "Beta" or the "Receiving Party").
+
+WHEREAS, the parties wish to explore a potential business relationship (the "Purpose") and in connection therewith may disclose to each other certain confidential and proprietary information; and
+
+WHEREAS, the parties wish to protect such confidential information from unauthorized use or disclosure;
+
+NOW, THEREFORE, in consideration of the mutual promises and covenants contained herein, the parties agree as follows:
+
+1. DEFINITION OF CONFIDENTIAL INFORMATION
+
+1.1 "Confidential Information" means any and all non-public, proprietary, or confidential information disclosed by either party to the other party, whether orally, in writing, electronically, or by inspection of tangible objects, including but not limited to: (a) trade secrets; (b) business plans, strategies, and forecasts; (c) financial information, including revenue, pricing, and cost data; (d) customer and supplier lists; (e) product designs, specifications, and roadmaps; (f) software source code, algorithms, and architectures; (g) marketing plans and strategies; (h) employee information; and (i) any other information that is designated as "confidential" or that reasonably should be understood to be confidential given the nature of the information and the circumstances of disclosure.
+
+1.2 Confidential Information shall not include information that: (a) is or becomes publicly available through no fault of the Receiving Party; (b) was already known to the Receiving Party prior to disclosure, as demonstrated by written records; (c) is independently developed by the Receiving Party without reference to the Confidential Information; or (d) is rightfully obtained by the Receiving Party from a third party without restriction on disclosure.
+
+2. OBLIGATIONS OF THE RECEIVING PARTY
+
+2.1 The Receiving Party shall: (a) hold the Confidential Information in strict confidence; (b) not disclose the Confidential Information to any third party without the prior written consent of the Disclosing Party; (c) use the Confidential Information solely for the Purpose; and (d) protect the Confidential Information using at least the same degree of care it uses to protect its own confidential information, but in no event less than reasonable care.
+
+2.2 The Receiving Party may disclose Confidential Information only to its employees, contractors, and advisors who have a need to know such information for the Purpose and who are bound by confidentiality obligations no less restrictive than those contained herein.
+
+2.3 The Receiving Party shall promptly notify the Disclosing Party in writing upon discovery of any unauthorized use or disclosure of Confidential Information.
+
+3. TERM AND TERMINATION
+
+3.1 This Agreement shall remain in effect for a period of two (2) years from the Effective Date, unless earlier terminated by either party upon thirty (30) days' written notice to the other party.
+
+3.2 The obligations of confidentiality set forth in Section 2 shall survive termination of this Agreement for a period of three (3) years following such termination.
+
+3.3 Upon termination or expiration of this Agreement, or upon the Disclosing Party's written request, the Receiving Party shall promptly return or destroy all Confidential Information and any copies thereof, and shall certify in writing that it has done so.
+
+4. COMPELLED DISCLOSURE
+
+4.1 If the Receiving Party is compelled by law, regulation, or legal process to disclose Confidential Information, the Receiving Party shall: (a) provide the Disclosing Party with prompt written notice of such requirement so that the Disclosing Party may seek a protective order or other appropriate remedy; (b) cooperate with the Disclosing Party in seeking such protection; and (c) disclose only that portion of the Confidential Information that is legally required to be disclosed.
+
+5. INTELLECTUAL PROPERTY
+
+5.1 Nothing in this Agreement shall be construed as granting any license or rights to the Receiving Party under any patent, copyright, trademark, or other intellectual property right of the Disclosing Party.
+
+5.2 All Confidential Information remains the exclusive property of the Disclosing Party.
+
+6. NO WARRANTY
+
+6.1 ALL CONFIDENTIAL INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+
+7. REMEDIES
+
+7.1 The parties acknowledge that any breach of this Agreement may cause irreparable harm to the Disclosing Party for which monetary damages would be inadequate. Accordingly, the Disclosing Party shall be entitled to seek equitable relief, including injunction and specific performance, in addition to any other remedies available at law or in equity.
+
+8. INDEMNIFICATION
+
+8.1 The Receiving Party shall indemnify, defend, and hold harmless the Disclosing Party and its officers, directors, employees, and agents from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or relating to any breach of this Agreement by the Receiving Party.
+
+9. LIMITATION OF LIABILITY
+
+9.1 IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER PARTY FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATING TO THIS AGREEMENT, REGARDLESS OF THE THEORY OF LIABILITY, EVEN IF SUCH PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+9.2 THE TOTAL LIABILITY OF EITHER PARTY UNDER THIS AGREEMENT SHALL NOT EXCEED $100,000.
+
+10. GOVERNING LAW AND DISPUTE RESOLUTION
+
+10.1 This Agreement shall be governed by and construed in accordance with the laws of the State of California, without regard to its conflict of laws principles.
+
+10.2 Any dispute arising out of or relating to this Agreement shall be resolved through binding arbitration in San Francisco, California, in accordance with the rules of the American Arbitration Association.
+
+11. GENERAL PROVISIONS
+
+11.1 Entire Agreement. This Agreement constitutes the entire agreement between the parties with respect to the subject matter hereof and supersedes all prior and contemporaneous agreements, understandings, and negotiations.
+
+11.2 Amendment. This Agreement may not be amended or modified except by a written instrument signed by both parties.
+
+11.3 Assignment. Neither party may assign or transfer this Agreement or any rights or obligations hereunder without the prior written consent of the other party, except that either party may assign this Agreement to a successor in connection with a merger, acquisition, or sale of substantially all of its assets.
+
+11.4 Severability. If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions shall continue in full force and effect.
+
+11.5 Waiver. The failure of either party to enforce any provision of this Agreement shall not constitute a waiver of that party's right to enforce such provision in the future.
+
+11.6 Notices. All notices required or permitted under this Agreement shall be in writing and shall be deemed given when delivered personally, sent by certified mail (return receipt requested), or sent by overnight courier to the addresses set forth above.
+
+11.7 Counterparts. This Agreement may be executed in counterparts, each of which shall be deemed an original, and all of which together shall constitute one and the same instrument.
+
+IN WITNESS WHEREOF, the parties have executed this Mutual Non-Disclosure Agreement as of the date first written above.
+
+ACME TECHNOLOGIES INC.
+By: ___________________________
+Name: Sarah Johnson
+Title: Chief Executive Officer
+Date: January 15, 2024
+
+BETA SOLUTIONS LLC
+By: ___________________________
+Name: Michael Chen
+Title: Managing Director
+Date: January 15, 2024

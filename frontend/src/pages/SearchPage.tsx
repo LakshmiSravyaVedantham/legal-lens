@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, FileText, Download, Clock, Bookmark, Copy } from 'lucide-react';
+import { Search, FileText, Download, Clock, Bookmark, Copy, Sparkles } from 'lucide-react';
 import { api } from '../lib/api';
 import { useToast } from '../components/Toast';
-import type { Citation, RecentSearch } from '../types';
+import type { Citation, RecentSearch, AISearchExpansion } from '../types';
 
 function highlightText(text: string, query: string): React.ReactNode {
   if (!query.trim()) return text;
@@ -27,6 +27,8 @@ export default function SearchPage() {
   const [searched, setSearched] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [recentSearches, setRecentSearches] = useState<RecentSearch[]>([]);
+  const [aiSuggestions, setAiSuggestions] = useState<AISearchExpansion | null>(null);
+  const [suggestLoading, setSuggestLoading] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -43,6 +45,12 @@ export default function SearchPage() {
       setResults(data.results);
       // Refresh recent searches
       api.getRecentSearches(5).then((r) => setRecentSearches(r.searches)).catch(() => {});
+      // Get AI suggestions (non-blocking)
+      setSuggestLoading(true);
+      api.expandSearch(q.trim())
+        .then(setAiSuggestions)
+        .catch(() => {})
+        .finally(() => setSuggestLoading(false));
     } catch (e: any) {
       setError(e.message);
     } finally {
@@ -113,6 +121,35 @@ export default function SearchPage() {
           </button>
         </div>
       </form>
+
+      {/* AI Suggestions */}
+      {searched && (aiSuggestions || suggestLoading) && (
+        <div className="mb-6 bg-gold-50 border border-gold-200 rounded-lg p-4">
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles size={14} className="text-gold-500" />
+            <span className="text-xs text-gold-700 font-medium uppercase tracking-wider">AI Suggestions</span>
+          </div>
+          {suggestLoading ? (
+            <p className="text-sm text-gold-600 animate-pulse">Generating suggestions...</p>
+          ) : aiSuggestions && (
+            <div className="flex flex-wrap gap-2">
+              {aiSuggestions.suggestions.map((s, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    setQuery(s);
+                    setSearchParams({ q: s });
+                    handleSearch(s);
+                  }}
+                  className="text-xs bg-white border border-gold-200 text-gold-700 px-3 py-1.5 rounded-full hover:bg-gold-100 transition-colors"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Recent searches */}
       {!searched && recentSearches.length > 0 && (

@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LegalLens — Business Strategy & Market Analysis</title>
+  <style>
+    :root {
+      --navy-900: #0f172a;
+      --navy-800: #1e293b;
+      --navy-700: #334155;
+      --navy-600: #475569;
+      --navy-500: #64748b;
+      --navy-400: #94a3b8;
+      --navy-300: #cbd5e1;
+      --navy-200: #e2e8f0;
+      --navy-100: #f1f5f9;
+      --navy-50: #f8fafc;
+      --gold-500: #eab308;
+      --gold-400: #facc15;
+      --gold-300: #fde047;
+      --green-600: #16a34a;
+      --green-100: #dcfce7;
+      --red-600: #dc2626;
+      --red-100: #fee2e2;
+      --blue-600: #2563eb;
+      --blue-100: #dbeafe;
+      --purple-600: #9333ea;
+      --purple-100: #f3e8ff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--navy-800);
+      background: var(--navy-50);
+      line-height: 1.6;
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 50%, #1a2744 100%);
+      color: white;
+      padding: 80px 24px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 70%, rgba(234, 179, 8, 0.06) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(37, 99, 235, 0.04) 0%, transparent 50%);
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(234, 179, 8, 0.15);
+      color: var(--gold-400);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 { font-size: 48px; font-weight: 800; margin-bottom: 16px; letter-spacing: -1px; }
+    .hero h1 .gold { color: var(--gold-400); }
+    .hero p { font-size: 20px; color: var(--navy-300); max-width: 640px; margin: 0 auto; }
+
+    /* ─── Nav tabs ─── */
+    .nav-bar {
+      background: white;
+      border-bottom: 1px solid var(--navy-200);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+    .nav-inner a {
+      padding: 16px 24px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy-500);
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .nav-inner a:hover { color: var(--navy-800); border-bottom-color: var(--navy-300); }
+
+    /* ─── Sections ─── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold-500);
+      margin-bottom: 8px;
+    }
+    .section h2 {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--navy-900);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .section .subtitle {
+      font-size: 18px;
+      color: var(--navy-500);
+      max-width: 700px;
+      margin-bottom: 48px;
+    }
+
+    /* ─── Cards ─── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: white;
+      border: 1px solid var(--navy-200);
+      border-radius: 12px;
+      padding: 32px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .card h3 { font-size: 20px; font-weight: 700; color: var(--navy-900); margin-bottom: 8px; }
+    .card p { color: var(--navy-500); font-size: 15px; }
+
+    /* ─── Stats row ─── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+    .stat-card {
+      background: white;
+      border: 1px solid var(--navy-200);
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+    }
+    .stat-card .number {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--navy-900);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-card .number .unit { font-size: 24px; color: var(--navy-600); }
+    .stat-card .label { font-size: 14px; color: var(--navy-500); font-weight: 500; }
+    .stat-card .sub { font-size: 12px; color: var(--navy-400); margin-top: 4px; }
+
+    /* ─── Competitor table ─── */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--navy-200);
+      background: white;
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    thead { background: var(--navy-900); color: white; }
+    th { padding: 14px 20px; text-align: left; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+    td { padding: 14px 20px; border-bottom: 1px solid var(--navy-100); }
+    tbody tr:hover { background: var(--navy-50); }
+    tbody tr:last-child td { border-bottom: none; }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .badge-green { background: var(--green-100); color: var(--green-600); }
+    .badge-red { background: var(--red-100); color: var(--red-600); }
+    .badge-blue { background: var(--blue-100); color: var(--blue-600); }
+    .badge-purple { background: var(--purple-100); color: var(--purple-600); }
+    .badge-gold { background: #fef9c3; color: #a16207; }
+    .check { color: var(--green-600); font-weight: bold; }
+    .cross { color: var(--navy-300); }
+    .highlight-row { background: rgba(234, 179, 8, 0.04); }
+    .highlight-row td:first-child { font-weight: 700; color: var(--navy-900); }
+
+    /* ─── Revenue model ─── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .pricing-card {
+      background: white;
+      border: 1px solid var(--navy-200);
+      border-radius: 16px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card.featured {
+      border: 2px solid var(--gold-500);
+      box-shadow: 0 8px 30px rgba(234, 179, 8, 0.12);
+    }
+    .pricing-card.featured::before {
+      content: 'BEST OPPORTUNITY';
+      position: absolute;
+      top: 16px;
+      right: -32px;
+      background: var(--gold-500);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 40px;
+      transform: rotate(45deg);
+      letter-spacing: 1px;
+    }
+    .pricing-card h3 { font-size: 22px; font-weight: 700; color: var(--navy-900); margin-bottom: 4px; }
+    .pricing-card .price { font-size: 36px; font-weight: 800; color: var(--navy-900); margin: 16px 0 4px; }
+    .pricing-card .price .per { font-size: 16px; font-weight: 400; color: var(--navy-500); }
+    .pricing-card .desc { font-size: 14px; color: var(--navy-500); margin-bottom: 20px; }
+    .pricing-card ul { list-style: none; margin-bottom: 24px; }
+    .pricing-card li { padding: 6px 0; font-size: 14px; color: var(--navy-600); }
+    .pricing-card li::before { content: '✓ '; color: var(--green-600); font-weight: bold; }
+    .pricing-card .revenue { background: var(--navy-50); border-radius: 8px; padding: 12px; font-size: 13px; color: var(--navy-600); text-align: center; }
+    .pricing-card .revenue strong { color: var(--navy-900); }
+
+    /* ─── Timeline / Roadmap ─── */
+    .roadmap { position: relative; padding-left: 40px; }
+    .roadmap::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold-500), var(--navy-300));
+    }
+    .roadmap-item {
+      position: relative;
+      margin-bottom: 40px;
+      background: white;
+      border: 1px solid var(--navy-200);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .roadmap-item::before {
+      content: '';
+      position: absolute;
+      left: -33px;
+      top: 32px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 3px solid var(--gold-500);
+      background: white;
+    }
+    .roadmap-item.done::before { background: var(--gold-500); }
+    .roadmap-item .phase {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .roadmap-item .phase.done-label { color: var(--green-600); }
+    .roadmap-item .phase.current-label { color: var(--gold-500); }
+    .roadmap-item .phase.future-label { color: var(--navy-400); }
+    .roadmap-item h3 { font-size: 20px; font-weight: 700; color: var(--navy-900); margin-bottom: 8px; }
+    .roadmap-item p { font-size: 14px; color: var(--navy-500); }
+    .roadmap-item .tasks { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .roadmap-item .task-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--navy-100);
+      color: var(--navy-600);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* ─── Go-to-market ─── */
+    .gtm-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .gtm-card {
+      background: white;
+      border: 1px solid var(--navy-200);
+      border-radius: 12px;
+      padding: 32px;
+    }
+    .gtm-card .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--navy-900);
+      color: var(--gold-400);
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .gtm-card h3 { font-size: 18px; font-weight: 700; color: var(--navy-900); margin-bottom: 8px; }
+    .gtm-card p { font-size: 14px; color: var(--navy-500); }
+    .gtm-card ul { margin-top: 12px; padding-left: 0; list-style: none; }
+    .gtm-card li { padding: 4px 0; font-size: 13px; color: var(--navy-600); }
+    .gtm-card li::before { content: '→ '; color: var(--gold-500); font-weight: bold; }
+
+    /* ─── Bar chart ─── */
+    .bar-chart { max-width: 600px; }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 12px;
+    }
+    .bar-label { width: 120px; font-size: 13px; font-weight: 600; color: var(--navy-700); text-align: right; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 28px; background: var(--navy-100); border-radius: 6px; overflow: hidden; position: relative; }
+    .bar-fill { height: 100%; border-radius: 6px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 11px; font-weight: 700; color: white; transition: width 1s ease; }
+    .bar-value { font-size: 13px; font-weight: 600; color: var(--navy-700); width: 70px; flex-shrink: 0; }
+
+    /* ─── Warning / callout ─── */
+    .callout {
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin: 32px 0;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .callout-gold { background: #fefce8; border: 1px solid #fde68a; }
+    .callout-green { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .callout-blue { background: #eff6ff; border: 1px solid #bfdbfe; }
+    .callout .icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .callout h4 { font-size: 16px; font-weight: 700; color: var(--navy-900); margin-bottom: 4px; }
+    .callout p { font-size: 14px; color: var(--navy-600); }
+
+    /* ─── Footer ─── */
+    .footer {
+      background: var(--navy-900);
+      color: var(--navy-300);
+      padding: 48px 24px;
+      text-align: center;
+      font-size: 14px;
+    }
+    .footer strong { color: var(--gold-400); }
+
+    /* ─── Dividers ─── */
+    .divider { border: none; border-top: 1px solid var(--navy-200); margin: 0; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .hero p { font-size: 16px; }
+      .section h2 { font-size: 28px; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .stat-card .number { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-badge">BUSINESS STRATEGY & MARKET ANALYSIS</div>
+  <h1><span class="gold">Legal</span>Lens</h1>
+  <p>Can this open-source legal AI platform make money? Who are the competitors? What's the path to revenue? Here's the full breakdown.</p>
+</section>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href="#market">Market Opportunity</a>
+    <a href="#money">Revenue Potential</a>
+    <a href="#competitors">Competitors</a>
+    <a href="#pricing">Pricing Model</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#gtm">Go-to-Market</a>
+    <a href="#verdict">Final Verdict</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════ MARKET OPPORTUNITY ═══════════════════ -->
+<section class="section" id="market">
+  <div class="section-label">Section 1</div>
+  <h2>The Market Is Massive & Growing Fast</h2>
+  <p class="subtitle">Legal AI is one of the fastest-growing enterprise software categories. The numbers make the opportunity obvious.</p>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="number">$1.75<span class="unit">B</span></div>
+      <div class="label">Legal AI Market (2025)</div>
+      <div class="sub">Source: Grand View Research</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">$3.9<span class="unit">B</span></div>
+      <div class="label">Projected by 2030</div>
+      <div class="sub">17.3% CAGR growth rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">$6<span class="unit">B</span></div>
+      <div class="label">Legal Tech Funding in 2025</div>
+      <div class="sub">Source: Artificial Lawyer</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">79<span class="unit">%</span></div>
+      <div class="label">Attorneys Now Using AI</div>
+      <div class="sub">Up from 19% in 2023</div>
+    </div>
+  </div>
+
+  <div class="callout callout-gold">
+    <div class="icon">💡</div>
+    <div>
+      <h4>Why This Matters for LegalLens</h4>
+      <p>79% of lawyers now use AI tools, but most commercial options cost $500–$1,200+/user/month. There is a massive underserved segment: solo practitioners, small firms (2–20 lawyers), legal departments in mid-size companies, and firms in countries where US-based SaaS tools are too expensive or don't comply with local data residency laws. LegalLens, being open-source and self-hosted, directly targets this gap.</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; color: var(--navy-900); margin: 40px 0 20px;">Where Law Firms Spend on AI</h3>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">Doc Review</div>
+      <div class="bar-track"><div class="bar-fill" style="width: 85%; background: var(--navy-800);">85%</div></div>
+      <div class="bar-value">$1.49B</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Legal Research</div>
+      <div class="bar-track"><div class="bar-fill" style="width: 70%; background: var(--navy-700);">70%</div></div>
+      <div class="bar-value">$1.23B</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Contract Mgmt</div>
+      <div class="bar-track"><div class="bar-fill" style="width: 60%; background: var(--gold-500);">60%</div></div>
+      <div class="bar-value">$1.05B</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Compliance</div>
+      <div class="bar-track"><div class="bar-fill" style="width: 40%; background: var(--navy-600);">40%</div></div>
+      <div class="bar-value">$700M</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Other</div>
+      <div class="bar-track"><div class="bar-fill" style="width: 15%; background: var(--navy-400);">15%</div></div>
+      <div class="bar-value">$280M</div>
+    </div>
+  </div>
+  <p style="font-size: 12px; color: var(--navy-400); margin-top: 8px;">LegalLens covers the top 3 categories: document review, research, and contract analysis.</p>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══════════════════ REVENUE POTENTIAL ═══════════════════ -->
+<section class="section" id="money">
+  <div class="section-label">Section 2</div>
+  <h2>Yes, It Can Make Money</h2>
+  <p class="subtitle">Open-source doesn't mean no revenue. Here are 5 proven monetization models for LegalLens, with realistic revenue projections.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>1. Managed Cloud (SaaS)</h3>
+      <p>Host LegalLens for firms who don't want to self-host. Charge per-user monthly. This is the <strong>highest-revenue</strong> model.</p>
+      <div style="margin-top: 16px; padding: 12px; background: var(--navy-50); border-radius: 8px;">
+        <p style="font-size: 13px; color: var(--navy-600);"><strong>Revenue potential:</strong> 100 firms × 5 users × $99/mo = <strong style="color: var(--navy-900);">$594K ARR</strong></p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>2. Enterprise Self-Hosted License</h3>
+      <p>Sell premium features (SSO, audit exports, priority support, advanced analytics) as a paid license for on-prem deployments.</p>
+      <div style="margin-top: 16px; padding: 12px; background: var(--navy-50); border-radius: 8px;">
+        <p style="font-size: 13px; color: var(--navy-600);"><strong>Revenue potential:</strong> 20 firms × $10K/yr = <strong style="color: var(--navy-900);">$200K ARR</strong></p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>3. Professional Services</h3>
+      <p>Custom deployments, integration with firm's existing systems (DMS, billing), training, and custom AI model fine-tuning.</p>
+      <div style="margin-top: 16px; padding: 12px; background: var(--navy-50); border-radius: 8px;">
+        <p style="font-size: 13px; color: var(--navy-600);"><strong>Revenue potential:</strong> 10 engagements × $15K = <strong style="color: var(--navy-900);">$150K/yr</strong></p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>4. API / Usage-Based</h3>
+      <p>Charge for AI analysis credits (cloud LLM calls). Free tier with local Ollama, paid tier for cloud AI (Claude, GPT) with higher quality.</p>
+      <div style="margin-top: 16px; padding: 12px; background: var(--navy-50); border-radius: 8px;">
+        <p style="font-size: 13px; color: var(--navy-600);"><strong>Revenue potential:</strong> 200 users × $29/mo = <strong style="color: var(--navy-900);">$69.6K ARR</strong></p>
+      </div>
+    </div>
+    <div class="card">
+      <h3>5. Marketplace Add-ons</h3>
+      <p>Sell specialized clause libraries, jurisdiction-specific compliance packs, and integrations (Clio, NetDocuments, iManage).</p>
+      <div style="margin-top: 16px; padding: 12px; background: var(--navy-50); border-radius: 8px;">
+        <p style="font-size: 13px; color: var(--navy-600);"><strong>Revenue potential:</strong> Variable — <strong style="color: var(--navy-900);">$50K–200K/yr</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-green" style="margin-top: 40px;">
+    <div class="icon">📊</div>
+    <div>
+      <h4>Combined Year 1 Revenue Potential: $300K – $600K</h4>
+      <p>Starting with the managed cloud (SaaS) model targeting small firms at $49–149/user/month, with professional services for larger engagements. This is realistic for a solo founder or 2-person team.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══════════════════ COMPETITORS ═══════════════════ -->
+<section class="section" id="competitors">
+  <div class="section-label">Section 3</div>
+  <h2>Competitor Landscape</h2>
+  <p class="subtitle">Know who you're up against — and where LegalLens has a clear advantage.</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>What They Do</th>
+          <th>Pricing</th>
+          <th>Revenue / Valuation</th>
+          <th>Self-Hosted</th>
+          <th>Open Source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td>LegalLens (You)</td>
+          <td>Doc search, AI analysis, RAG Q&A, clause finder, memos</td>
+          <td><span class="badge badge-green">Free / TBD</span></td>
+          <td>Pre-revenue</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td><strong>Harvey AI</strong></td>
+          <td>General legal AI assistant, research, drafting</td>
+          <td><span class="badge badge-red">~$1,200/user/mo</span></td>
+          <td>$195M ARR / $11B valuation</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td><strong>CoCounsel</strong></td>
+          <td>Legal research (Thomson Reuters / Westlaw)</td>
+          <td><span class="badge badge-red">~$3,000/seat/yr bundle</span></td>
+          <td>Part of Thomson Reuters ($60B+)</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td><strong>Luminance</strong></td>
+          <td>Contract review, due diligence, negotiation</td>
+          <td><span class="badge badge-red">Enterprise pricing</span></td>
+          <td>~$30M ARR / 700 customers</td>
+          <td>Hybrid</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td><strong>Klarity</strong></td>
+          <td>AI contract review, policy matching</td>
+          <td><span class="badge badge-purple">Enterprise</span></td>
+          <td>$90.4M raised</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td><strong>Spellbook</strong></td>
+          <td>Contract drafting, clause suggestions in MS Word</td>
+          <td><span class="badge badge-blue">~$400–600/mo</span></td>
+          <td>$30M+ raised</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td><strong>Paxton AI</strong></td>
+          <td>Legal research, case law analysis, drafting</td>
+          <td><span class="badge badge-blue">Custom</span></td>
+          <td>$28M raised</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td><strong>Casetext</strong></td>
+          <td>Legal research (acquired by Thomson Reuters)</td>
+          <td><span class="badge badge-blue">$250+/mo</span></td>
+          <td>Acquired for $650M</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-blue" style="margin-top: 32px;">
+    <div class="icon">🎯</div>
+    <div>
+      <h4>LegalLens Competitive Advantage</h4>
+      <p>Every single competitor is <strong>cloud-only and closed-source</strong>. LegalLens is the only option that is (1) open-source, (2) self-hostable, and (3) multi-LLM. This is a genuine market gap — not a niche, but a requirement for many firms.</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 20px; font-weight: 700; color: var(--navy-900); margin: 40px 0 20px;">Feature Comparison</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>LegalLens</th>
+          <th>Harvey</th>
+          <th>CoCounsel</th>
+          <th>Luminance</th>
+          <th>Spellbook</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Semantic Document Search</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>RAG Q&A with Citations</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Risk Analysis</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Clause Library Search</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Contract Comparison</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Obligations Extraction</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Research Memos</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>100% Data Privacy</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td>Partial</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Works Offline (Local LLM)</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Multi-LLM Provider</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Self-Hosted Option</td>
+          <td class="check">✓</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Multi-Tenant / Team Support</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══════════════════ PRICING MODEL ═══════════════════ -->
+<section class="section" id="pricing">
+  <div class="section-label">Section 4</div>
+  <h2>Recommended Pricing Strategy</h2>
+  <p class="subtitle">A three-tier open-core model that captures value at every firm size. Free core keeps community growing, paid tiers drive revenue.</p>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>Community</h3>
+      <div class="desc">Solo practitioners & individuals</div>
+      <div class="price">Free<span class="per"></span></div>
+      <ul>
+        <li>Full open-source platform</li>
+        <li>Self-hosted (Docker)</li>
+        <li>Semantic search & Q&A</li>
+        <li>5 AI analyses (local LLM)</li>
+        <li>Up to 3 users</li>
+        <li>Community support (GitHub)</li>
+      </ul>
+      <div class="revenue"><strong>Purpose:</strong> Adoption funnel & brand awareness</div>
+    </div>
+
+    <div class="pricing-card featured">
+      <h3>Professional</h3>
+      <div class="desc">Small & mid-size law firms</div>
+      <div class="price">$79<span class="per"> /user/mo</span></div>
+      <ul>
+        <li>Managed cloud hosting</li>
+        <li>Cloud AI (Claude & GPT)</li>
+        <li>OCR for scanned PDFs</li>
+        <li>Unlimited AI analyses</li>
+        <li>Priority email support</li>
+        <li>Automatic backups</li>
+        <li>SSO (Google, Microsoft)</li>
+      </ul>
+      <div class="revenue"><strong>50 firms × 8 users = $379K ARR</strong></div>
+    </div>
+
+    <div class="pricing-card">
+      <h3>Enterprise</h3>
+      <div class="desc">Large firms & legal departments</div>
+      <div class="price">Custom<span class="per"></span></div>
+      <ul>
+        <li>Self-hosted or private cloud</li>
+        <li>SAML / SSO integration</li>
+        <li>Advanced audit & compliance</li>
+        <li>Custom integrations (DMS)</li>
+        <li>SLA & dedicated support</li>
+        <li>Fine-tuned AI models</li>
+        <li>On-premise deployment help</li>
+      </ul>
+      <div class="revenue"><strong>10 firms × $25K/yr = $250K ARR</strong></div>
+    </div>
+  </div>
+
+  <div class="callout callout-gold" style="margin-top: 40px;">
+    <div class="icon">💰</div>
+    <div>
+      <h4>Why $79/User/Month Is the Sweet Spot</h4>
+      <p>Harvey charges $1,200/user/month. CoCounsel bundles at ~$250/month. Spellbook is $400–600/month. At <strong>$79/user/month</strong>, LegalLens is 5–15x cheaper than competitors while offering comparable features. For a 5-lawyer firm, that's $395/month — less than a single Westlaw subscription. This is the price point where small firms can say yes without a committee approval.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══════════════════ ROADMAP ═══════════════════ -->
+<section class="section" id="roadmap">
+  <div class="section-label">Section 5</div>
+  <h2>Product Roadmap — What to Build Next</h2>
+  <p class="subtitle">A practical 6-phase roadmap prioritized by revenue impact and technical feasibility.</p>
+
+  <div class="roadmap">
+    <div class="roadmap-item done">
+      <div class="phase done-label">Phase 1 — Completed</div>
+      <h3>Security Hardening & Code Quality</h3>
+      <p>Fixed CORS vulnerabilities, regex injection, error leaking, Docker security, accessibility, TypeScript patterns, React error boundaries.</p>
+      <div class="tasks">
+        <span class="task-tag">CORS fix</span>
+        <span class="task-tag">Upload security</span>
+        <span class="task-tag">Error handling</span>
+        <span class="task-tag">Docker hardening</span>
+        <span class="task-tag">Accessibility</span>
+        <span class="task-tag">ErrorBoundary</span>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="phase current-label">Phase 2 — Next (2–3 Weeks)</div>
+      <h3>Testing & CI/CD Pipeline</h3>
+      <p>Build confidence before launching to users. Backend unit tests, integration tests, frontend component tests, and automated CI.</p>
+      <div class="tasks">
+        <span class="task-tag">pytest suite</span>
+        <span class="task-tag">Vitest components</span>
+        <span class="task-tag">E2E smoke test</span>
+        <span class="task-tag">GitHub Actions CI</span>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="phase current-label">Phase 3 — Month 1–2</div>
+      <h3>Search Quality & OCR</h3>
+      <p>The single biggest differentiator. Add hybrid search (BM25 + semantic), OCR for scanned PDFs, and cross-encoder re-ranking.</p>
+      <div class="tasks">
+        <span class="task-tag">Hybrid search</span>
+        <span class="task-tag">OCR (Tesseract)</span>
+        <span class="task-tag">Re-ranking</span>
+        <span class="task-tag">Metadata filters</span>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="phase future-label">Phase 4 — Month 2–3</div>
+      <h3>Cloud Platform (SaaS MVP)</h3>
+      <p>Launch managed hosting. Multi-tenant cloud, Stripe billing, onboarding flow, usage dashboards. Start charging for the Professional tier.</p>
+      <div class="tasks">
+        <span class="task-tag">Stripe integration</span>
+        <span class="task-tag">Cloud deployment</span>
+        <span class="task-tag">User onboarding</span>
+        <span class="task-tag">Usage metering</span>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="phase future-label">Phase 5 — Month 3–5</div>
+      <h3>Growth Features</h3>
+      <p>Features that drive adoption and retention: real-time collaboration, document versioning, email parsing, DMS integrations, mobile layout.</p>
+      <div class="tasks">
+        <span class="task-tag">Collaboration</span>
+        <span class="task-tag">Versioning</span>
+        <span class="task-tag">Email parsing</span>
+        <span class="task-tag">Integrations</span>
+      </div>
+    </div>
+
+    <div class="roadmap-item">
+      <div class="phase future-label">Phase 6 — Month 5+</div>
+      <h3>Enterprise & Scale</h3>
+      <p>Land larger deals: SAML/SSO, Kubernetes deployment, compliance certifications (SOC 2), custom AI model training, white-label option.</p>
+      <div class="tasks">
+        <span class="task-tag">SSO/SAML</span>
+        <span class="task-tag">Kubernetes</span>
+        <span class="task-tag">SOC 2</span>
+        <span class="task-tag">White-label</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══════════════════ GO-TO-MARKET ═══════════════════ -->
+<section class="section" id="gtm">
+  <div class="section-label">Section 6</div>
+  <h2>How to Take This to Market</h2>
+  <p class="subtitle">A step-by-step go-to-market strategy specifically designed for an open-source legal AI product.</p>
+
+  <div class="gtm-grid">
+    <div class="gtm-card">
+      <div class="step-num">1</div>
+      <h3>Build in Public</h3>
+      <p>Use open-source as your marketing engine. Most legal AI tools are black boxes — transparency is your differentiator.</p>
+      <ul>
+        <li>Polish GitHub repo (README, demo GIF, one-click deploy)</li>
+        <li>Write blog posts on legal AI architecture decisions</li>
+        <li>Post on LinkedIn targeting legal ops / legal tech communities</li>
+        <li>Submit to Hacker News, Product Hunt, r/legaltech</li>
+      </ul>
+    </div>
+
+    <div class="gtm-card">
+      <div class="step-num">2</div>
+      <h3>Target Early Adopters</h3>
+      <p>Find the first 10 law firms who will use it for free and give you feedback. These become your case studies and testimonials.</p>
+      <ul>
+        <li>Solo practitioners and small firms (2–10 lawyers)</li>
+        <li>Legal clinics and law school programs</li>
+        <li>Legal departments in startups / mid-size companies</li>
+        <li>Firms in privacy-strict jurisdictions (EU/GDPR, India, Brazil)</li>
+      </ul>
+    </div>
+
+    <div class="gtm-card">
+      <div class="step-num">3</div>
+      <h3>Launch Managed Cloud</h3>
+      <p>Once you have 10+ active self-hosted users, launch the cloud version. Most users prefer not to manage infrastructure.</p>
+      <ul>
+        <li>Deploy on AWS/GCP with per-tenant isolation</li>
+        <li>Stripe billing ($79/user/month Professional tier)</li>
+        <li>One-click signup with Google OAuth</li>
+        <li>Free 14-day trial, no credit card required</li>
+      </ul>
+    </div>
+
+    <div class="gtm-card">
+      <div class="step-num">4</div>
+      <h3>Content & Community</h3>
+      <p>Legal professionals trust education over ads. Become the authority on self-hosted legal AI.</p>
+      <ul>
+        <li>Webinars: "AI-Powered Contract Review for Small Firms"</li>
+        <li>Comparison guides: "LegalLens vs Harvey vs CoCounsel"</li>
+        <li>Partner with legal tech consultants and bar associations</li>
+        <li>Speak at LegalTech conferences (ILTACON, LegalTech NY)</li>
+      </ul>
+    </div>
+
+    <div class="gtm-card">
+      <div class="step-num">5</div>
+      <h3>Enterprise Sales</h3>
+      <p>Once you have 50+ cloud customers, start outbound to larger firms who need on-premise deployments.</p>
+      <ul>
+        <li>Target legal ops directors at AmLaw 200 firms</li>
+        <li>Offer free pilot (30-day on-prem deployment)</li>
+        <li>Build case studies with ROI metrics</li>
+        <li>Partner with legal tech resellers (NetDocuments, iManage)</li>
+      </ul>
+    </div>
+
+    <div class="gtm-card">
+      <div class="step-num">6</div>
+      <h3>Raise Funding (Optional)</h3>
+      <p>If you want to accelerate growth, legal AI is one of the hottest funding categories right now.</p>
+      <ul>
+        <li>$6B invested in legal tech in 2025 alone</li>
+        <li>Paxton raised $22M Series A with far fewer features</li>
+        <li>Open-source + self-hosted is a proven investor thesis</li>
+        <li>Target: $1–3M seed at $8–15M valuation with traction</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ═══════════════════ FINAL VERDICT ═══════════════════ -->
+<section class="section" id="verdict">
+  <div class="section-label">Section 7</div>
+  <h2>The Final Verdict</h2>
+  <p class="subtitle">Putting it all together — is LegalLens worth pursuing as a business?</p>
+
+  <div class="card-grid" style="margin-bottom: 40px;">
+    <div class="card" style="border-left: 4px solid var(--green-600);">
+      <h3 style="color: var(--green-600);">Strengths</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10003; Only open-source, self-hosted legal AI platform</li>
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10003; Privacy-first — meets GDPR/data residency needs</li>
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10003; Multi-LLM (works offline with Ollama)</li>
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10003; Feature-rich (9 AI analyses, RAG, clause search)</li>
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10003; Clean, modern codebase (FastAPI + React + TypeScript)</li>
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10003; 5–15x cheaper than competitors</li>
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10003; $1.75B market growing at 17% CAGR</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left: 4px solid var(--red-600);">
+      <h3 style="color: var(--red-600);">Risks & Challenges</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10007; Competing with $11B Harvey and Thomson Reuters</li>
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10007; Legal profession is slow to adopt new tools</li>
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10007; Open-source monetization requires discipline</li>
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10007; No OCR yet (limits document coverage)</li>
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10007; Need SOC 2 compliance for enterprise sales</li>
+        <li style="padding: 6px 0; font-size: 14px; color: var(--navy-600);">&#10007; Solo developer bandwidth constraints</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background: linear-gradient(135deg, var(--navy-900), #1a2744); border-radius: 16px; padding: 48px; color: white; text-align: center;">
+    <h3 style="font-size: 28px; font-weight: 800; margin-bottom: 16px;">Verdict: Strong "Go" — with Focus</h3>
+    <p style="font-size: 16px; color: var(--navy-300); max-width: 700px; margin: 0 auto 32px;">
+      LegalLens has a genuine competitive moat (open-source + self-hosted + privacy-first) in a $1.75B market where every competitor charges $250–$1,200/user/month.
+      The path to $300K+ ARR is realistic within 12 months if you focus on: <strong style="color: var(--gold-400);">search quality first</strong>, <strong style="color: var(--gold-400);">managed cloud second</strong>, <strong style="color: var(--gold-400);">enterprise third</strong>.
+    </p>
+    <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
+      <div style="background: rgba(255,255,255,0.08); border-radius: 12px; padding: 20px 28px; min-width: 180px;">
+        <div style="font-size: 28px; font-weight: 800; color: var(--gold-400);">3 months</div>
+        <div style="font-size: 13px; color: var(--navy-400);">To SaaS launch</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.08); border-radius: 12px; padding: 20px 28px; min-width: 180px;">
+        <div style="font-size: 28px; font-weight: 800; color: var(--gold-400);">$79/user</div>
+        <div style="font-size: 13px; color: var(--navy-400);">Sweet-spot pricing</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.08); border-radius: 12px; padding: 20px 28px; min-width: 180px;">
+        <div style="font-size: 28px; font-weight: 800; color: var(--gold-400);">$300K+</div>
+        <div style="font-size: 13px; color: var(--navy-400);">Year 1 ARR target</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 48px; padding: 32px; background: white; border: 1px solid var(--navy-200); border-radius: 12px;">
+    <h3 style="font-size: 20px; font-weight: 700; color: var(--navy-900); margin-bottom: 16px;">Immediate Next Steps (This Week)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+      <div style="padding: 16px; background: var(--navy-50); border-radius: 8px;">
+        <strong style="font-size: 14px; color: var(--navy-800);">1. Polish the GitHub Repo</strong>
+        <p style="font-size: 13px; color: var(--navy-500); margin-top: 4px;">Add demo GIF, badges, one-click deploy buttons (Railway, Render). First impressions matter.</p>
+      </div>
+      <div style="padding: 16px; background: var(--navy-50); border-radius: 8px;">
+        <strong style="font-size: 14px; color: var(--navy-800);">2. Add Tests & CI</strong>
+        <p style="font-size: 13px; color: var(--navy-500); margin-top: 4px;">GitHub Actions pipeline running pytest + npm build on every push. Builds trust with users.</p>
+      </div>
+      <div style="padding: 16px; background: var(--navy-50); border-radius: 8px;">
+        <strong style="font-size: 14px; color: var(--navy-800);">3. Deploy a Live Demo</strong>
+        <p style="font-size: 13px; color: var(--navy-500); margin-top: 4px;">Public instance with sample legal documents. Let people try before installing. Huge for conversions.</p>
+      </div>
+      <div style="padding: 16px; background: var(--navy-50); border-radius: 8px;">
+        <strong style="font-size: 14px; color: var(--navy-800);">4. Post on LinkedIn & HN</strong>
+        <p style="font-size: 13px; color: var(--navy-500); margin-top: 4px;">"I built an open-source alternative to Harvey AI" — this is a post that will get engagement in legal tech circles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SOURCES ═══════════════════ -->
+<section class="section" style="padding-top: 32px; padding-bottom: 24px;">
+  <h3 style="font-size: 16px; font-weight: 700; color: var(--navy-700); margin-bottom: 12px;">Sources</h3>
+  <ul style="list-style: none; padding: 0; font-size: 13px; color: var(--navy-500); line-height: 2;">
+    <li><a href="https://www.grandviewresearch.com/industry-analysis/legal-ai-market-report" style="color: var(--blue-600);">Grand View Research — Legal AI Market Report</a></li>
+    <li><a href="https://www.artificiallawyer.com/2026/01/06/legal-tech-raised-6bn-in-2025-as-ai-boom-shows-divisions/" style="color: var(--blue-600);">Artificial Lawyer — Legal Tech Raised $6B in 2025</a></li>
+    <li><a href="https://toppeconsulting.com/2025/11/22/legal-ai-market-explodes-to-1-45-billion-as-79-of-attorneys-adopt-technology-in-2025/" style="color: var(--blue-600);">Toppe Consulting — 79% of Attorneys Adopt AI (2025)</a></li>
+    <li><a href="https://sacra.com/c/harvey/" style="color: var(--blue-600);">Sacra — Harvey AI Revenue & Valuation</a></li>
+    <li><a href="https://techcrunch.com/2026/02/09/harvey-reportedly-raising-at-11b-valuation-just-months-after-it-hit-8b/" style="color: var(--blue-600);">TechCrunch — Harvey Raising at $11B Valuation (Feb 2026)</a></li>
+    <li><a href="https://sacra.com/research/luminance-at-30m-arr/" style="color: var(--blue-600);">Sacra — Luminance at $30M ARR</a></li>
+    <li><a href="https://www.eesel.ai/blog/harvey-ai-pricing" style="color: var(--blue-600);">eesel.ai — Harvey AI Pricing Guide</a></li>
+    <li><a href="https://blog.legaltechmg.com/legal-techs-32b-market-map" style="color: var(--blue-600);">LegalTech MG — Legal Tech's $32B Market Map</a></li>
+    <li><a href="https://brightflag.com/resources/top-legal-ai-companies/" style="color: var(--blue-600);">BrightFlag — Top Legal AI Companies 2026</a></li>
+    <li><a href="https://www.darrow.ai/resources/legal-tech-startups" style="color: var(--blue-600);">Darrow — Legal Tech Startups to Watch 2026</a></li>
+  </ul>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+  <p><strong>LegalLens</strong> — Open-Source Legal Document Intelligence</p>
+  <p style="margin-top: 8px; font-size: 13px;">Business Strategy Document &middot; Generated February 2026</p>
+</footer>
+
+</body>
+</html>

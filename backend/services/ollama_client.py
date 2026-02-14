@@ -2,23 +2,25 @@ import logging
 
 import httpx
 
-from backend.config import OLLAMA_BASE_URL, OLLAMA_MODEL, OLLAMA_TIMEOUT
+from backend.core.settings import get_settings
 
 logger = logging.getLogger(__name__)
 
 
 async def check_ollama_health() -> bool:
+    settings = get_settings()
     try:
         async with httpx.AsyncClient(timeout=5.0) as client:
-            resp = await client.get(f"{OLLAMA_BASE_URL}/api/tags")
+            resp = await client.get(f"{settings.ollama_base_url}/api/tags")
             return resp.status_code == 200
     except Exception:
         return False
 
 
 async def generate(prompt: str, system: str | None = None) -> str:
+    settings = get_settings()
     payload: dict = {
-        "model": OLLAMA_MODEL,
+        "model": settings.ollama_model,
         "prompt": prompt,
         "stream": False,
     }
@@ -26,9 +28,9 @@ async def generate(prompt: str, system: str | None = None) -> str:
         payload["system"] = system
 
     try:
-        async with httpx.AsyncClient(timeout=OLLAMA_TIMEOUT) as client:
+        async with httpx.AsyncClient(timeout=settings.ollama_timeout) as client:
             resp = await client.post(
-                f"{OLLAMA_BASE_URL}/api/generate",
+                f"{settings.ollama_base_url}/api/generate",
                 json=payload,
             )
             resp.raise_for_status()

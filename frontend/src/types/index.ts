@@ -150,3 +150,112 @@ export interface MatterTag {
   client: string;
   tags: string[];
 }
+
+// ---------------------------------------------------------------------------
+// AI Analysis Types
+// ---------------------------------------------------------------------------
+
+export interface AIAnalysisResult {
+  document_id: string;
+  analysis_type: string;
+  cached: boolean;
+  [key: string]: unknown;
+}
+
+export interface AISummary extends AIAnalysisResult {
+  title: string;
+  summary: string;
+  document_type: string;
+  key_points: string[];
+  parties: string[];
+}
+
+export interface RiskItem {
+  clause: string;
+  risk_level: 'low' | 'medium' | 'high';
+  description: string;
+  recommendation: string;
+}
+
+export interface AIRiskAnalysis extends AIAnalysisResult {
+  overall_risk: 'low' | 'medium' | 'high';
+  risk_score: number;
+  risks: RiskItem[];
+  summary: string;
+}
+
+export interface ChecklistItem {
+  provision: string;
+  status: 'pass' | 'fail' | 'review';
+  detail: string;
+  section: string | null;
+}
+
+export interface AIChecklist extends AIAnalysisResult {
+  checklist: ChecklistItem[];
+  score: number;
+  summary: string;
+}
+
+export interface ObligationItem {
+  party: string;
+  obligation: string;
+  type: string;
+  deadline: string | null;
+  section: string | null;
+  priority: 'high' | 'medium' | 'low';
+}
+
+export interface AIObligations extends AIAnalysisResult {
+  obligations: ObligationItem[];
+  upcoming_deadlines: { date: string; description: string; party: string }[];
+  summary: string;
+}
+
+export interface TimelineEvent {
+  date: string;
+  event: string;
+  category: string;
+  party: string | null;
+}
+
+export interface AITimeline extends AIAnalysisResult {
+  events: TimelineEvent[];
+  duration: string;
+  key_dates_summary: string;
+}
+
+export interface ComparisonProvision {
+  provision: string;
+  document_a: string;
+  document_b: string;
+  status: 'match' | 'different' | 'only_a' | 'only_b';
+}
+
+export interface AIComparison {
+  document_a: { id: string; filename: string };
+  document_b: { id: string; filename: string };
+  provisions: ComparisonProvision[];
+  key_differences: string[];
+  similarities: string[];
+  recommendation: string;
+}
+
+export interface AIBrief {
+  title: string;
+  issue: string;
+  brief_answer: string;
+  discussion: string;
+  conclusion: string;
+  sources_used: number[];
+}
+
+export interface AISearchExpansion {
+  original: string;
+  suggestions: string[];
+  legal_terms: string[];
+}
+
+export interface ChatResponseWithFollowUps extends ChatResponse {
+  follow_up_suggestions: string[];
+}

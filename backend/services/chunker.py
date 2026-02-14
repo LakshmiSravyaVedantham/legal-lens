@@ -1,7 +1,7 @@
 import re
 from dataclasses import dataclass
 
-from backend.config import CHUNK_SIZE_WORDS, CHUNK_OVERLAP_WORDS
+from backend.core.settings import get_settings
 
 
 @dataclass
@@ -24,10 +24,15 @@ def chunk_pages(
     pages: list,
     document_id: str,
     document_name: str,
-    chunk_size: int = CHUNK_SIZE_WORDS,
-    overlap: int = CHUNK_OVERLAP_WORDS,
+    chunk_size: int | None = None,
+    overlap: int | None = None,
 ) -> list[Chunk]:
     """Chunk extracted pages into overlapping word-based chunks."""
+    settings = get_settings()
+    if chunk_size is None:
+        chunk_size = settings.chunk_size_words
+    if overlap is None:
+        overlap = settings.chunk_overlap_words
     chunks: list[Chunk] = []
     chunk_index = 0
 

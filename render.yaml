@@ -1,0 +1,48 @@
+# Render Blueprint — one-click deploy for LegalLens
+# https://render.com/docs/blueprint-spec
+
+services:
+  # Backend API
+  - type: web
+    name: legallens-backend
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: MONGO_URI
+        fromDatabase:
+          name: legallens-db
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      - key: CHROMA_HOST
+        value: ""
+      - key: LOG_FORMAT
+        value: json
+
+  # Frontend (static site)
+  - type: web
+    name: legallens-frontend
+    runtime: static
+    buildCommand: cd frontend && npm ci && npm run build
+    staticPublishPath: frontend/dist
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://legallens-backend.onrender.com/api
+
+databases:
+  - name: legallens-db
+    plan: free
+    databaseName: legallens
