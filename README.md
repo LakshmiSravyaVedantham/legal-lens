@@ -4,7 +4,7 @@
 
 **Open-Source AI-Powered Document Intelligence for Legal Professionals**
 
-[![CI](https://github.com/LakshmiSravya123/legal-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/LakshmiSravya123/legal-lens/actions/workflows/ci.yml)
+[![CI](https://github.com/LakshmiSravyaVedantham/legal-lens/actions/workflows/ci.yml/badge.svg)](https://github.com/LakshmiSravyaVedantham/legal-lens/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-gold.svg)](LICENSE)
 [![Python 3.12+](https://img.shields.io/badge/Python-3.12+-3776ab.svg)](https://python.org)
 [![React 19](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev)
@@ -41,13 +41,13 @@
 
 ## One-Click Deploy
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/LakshmiSravya123/legal-lens)
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/template?referralCode=legallens&repo=https://github.com/LakshmiSravya123/legal-lens)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/LakshmiSravyaVedantham/legal-lens)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/template?referralCode=legallens&repo=https://github.com/LakshmiSravyaVedantham/legal-lens)
 
 Or run locally with Docker:
 
 ```bash
-git clone https://github.com/LakshmiSravya123/legal-lens.git
+git clone https://github.com/LakshmiSravyaVedantham/legal-lens.git
 cd legal-lens
 cp .env.example .env
 docker compose up --build
@@ -169,7 +169,7 @@ Indemnification, Limitation of Liability, Termination, Force Majeure, Confidenti
 ### Option 1: Docker (Recommended)
 
 ```bash
-git clone https://github.com/LakshmiSravya123/legal-lens.git
+git clone https://github.com/LakshmiSravyaVedantham/legal-lens.git
 cd legal-lens
 cp .env.example .env       # Edit secrets before production use
 docker compose up --build   # Start all services
@@ -187,7 +187,7 @@ docker compose --profile ollama up --build
 
 ```bash
 # Clone
-git clone https://github.com/LakshmiSravya123/legal-lens.git
+git clone https://github.com/LakshmiSravyaVedantham/legal-lens.git
 cd legal-lens
 
 # Backend
@@ -393,6 +393,6 @@ MIT — use it freely for personal and commercial projects.
 
 **Built with privacy in mind. No data leaves your infrastructure.**
 
-[Report Bug](https://github.com/LakshmiSravya123/legal-lens/issues) · [Request Feature](https://github.com/LakshmiSravya123/legal-lens/issues) · [Discussions](https://github.com/LakshmiSravya123/legal-lens/discussions)
+[Report Bug](https://github.com/LakshmiSravyaVedantham/legal-lens/issues) · [Request Feature](https://github.com/LakshmiSravyaVedantham/legal-lens/issues) · [Discussions](https://github.com/LakshmiSravyaVedantham/legal-lens/discussions)
 
 </div>

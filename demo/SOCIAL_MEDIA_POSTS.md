@@ -43,7 +43,7 @@ Why I built it:
 - Law firms have strict data handling requirements — cloud-only doesn't work for many
 - I believe legal AI should be accessible to solo practitioners and small firms, not just BigLaw
 
-Try it: github.com/LakshmiSravya123/legal-lens
+Try it: github.com/LakshmiSravyaVedantham/legal-lens
 
 One-click deploy on Render or Railway. Or `docker compose up` on your machine.
 
@@ -100,7 +100,7 @@ Law firms handle privileged documents — attorney-client communications, trade 
 - Hybrid search (BM25 + semantic)
 - Cross-encoder re-ranking
 
-GitHub: https://github.com/LakshmiSravya123/legal-lens
+GitHub: https://github.com/LakshmiSravyaVedantham/legal-lens
 
 Would love feedback on the architecture and search quality approaches.
 
@@ -153,7 +153,7 @@ Tech: FastAPI + React + TypeScript + ChromaDB + MongoDB
 One command to deploy:
 `docker compose up`
 
-Try it: github.com/LakshmiSravya123/legal-lens
+Try it: github.com/LakshmiSravyaVedantham/legal-lens
 
 Feedback welcome — especially from lawyers and legal ops folks.
 
@@ -188,6 +188,6 @@ I've been building LegalLens — an open-source legal document intelligence plat
 
 It's MIT licensed and deploys with `docker compose up`.
 
-GitHub: https://github.com/LakshmiSravya123/legal-lens
+GitHub: https://github.com/LakshmiSravyaVedantham/legal-lens
 
 Would love feedback from anyone in legal tech or anyone who's built RAG systems. Particularly interested in thoughts on search quality (currently pure semantic — considering adding BM25 hybrid search).
