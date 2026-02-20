@@ -72,7 +72,8 @@ export default function LLMProvidersTab() {
       if (!prev) return prev;
       return {
         ...prev,
-        [key]: { ...(prev as Record<string, ProviderConfig>)[key], [field]: value },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [key]: { ...(prev as any)[key], [field]: value },
       };
     });
   };
@@ -108,7 +109,8 @@ export default function LLMProvidersTab() {
   return (
     <div className="space-y-6">
       {PROVIDERS.map(({ key, label, description }) => {
-        const cfg = (config as Record<string, ProviderConfig>)[key];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const cfg = (config as any)[key];
         const status = getStatus(key);
 
         return (
