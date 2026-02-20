@@ -3,18 +3,26 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-from fastapi import APIRouter, BackgroundTasks, HTTPException, UploadFile, File, Depends, Request
+from fastapi import (
+    APIRouter,
+    BackgroundTasks,
+    Depends,
+    File,
+    HTTPException,
+    Request,
+    UploadFile,
+)
 
-from backend.core.settings import get_settings
 from backend.core.database import get_db
+from backend.core.settings import get_settings
+from backend.middleware.auth import get_current_user, require_role
+from backend.middleware.rate_limit import UPLOAD_LIMIT, limiter
 from backend.models.schemas import DocumentMetadata, DocumentResponse, ProcessingStatus
-from backend.services.document_processor import extract_text
-from backend.services.chunker import chunk_pages
+from backend.models.user import Role
 from backend.services import vector_store
 from backend.services.activity import log_activity, log_audit_event
-from backend.middleware.auth import get_current_user, require_role
-from backend.middleware.rate_limit import limiter, UPLOAD_LIMIT
-from backend.models.user import Role
+from backend.services.chunker import chunk_pages
+from backend.services.document_processor import extract_text
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["documents"])
@@ -50,8 +58,8 @@ async def _process_document(doc_id: str, file_path: Path, filename: str, org_id:
 
         # Auto-summarize (non-blocking — failure doesn't affect processing)
         try:
-            from backend.services.llm.manager import get_llm_manager
             from backend.services import ai_features
+            from backend.services.llm.manager import get_llm_manager
             full_text = "\n".join(p.text for p in pages)
             llm = get_llm_manager()
             summary = await ai_features.generate_summary(full_text, llm, org_id)

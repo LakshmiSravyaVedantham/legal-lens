@@ -1,14 +1,19 @@
 """User and authentication operations against MongoDB."""
 
-import re
 import logging
+import re
 from datetime import datetime, timezone
 
 from bson import ObjectId
 
 from backend.core.database import get_db
-from backend.core.security import hash_password, verify_password, create_access_token, create_refresh_token
-from backend.models.user import UserCreate, UserInDB, Role, Token
+from backend.core.security import (
+    create_access_token,
+    create_refresh_token,
+    hash_password,
+    verify_password,
+)
+from backend.models.user import Role, Token, UserCreate, UserInDB
 
 logger = logging.getLogger(__name__)
 

@@ -1,8 +1,8 @@
 import logging
 
 from backend.models.schemas import Citation
-from backend.services.embeddings import embed_query
 from backend.services import vector_store
+from backend.services.embeddings import embed_query
 
 logger = logging.getLogger(__name__)
 

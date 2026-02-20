@@ -1,12 +1,12 @@
 import logging
 
-from fastapi import APIRouter, HTTPException, Depends, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 
-from backend.models.schemas import ChatRequest, ChatResponseWithFollowUps
-from backend.services.rag_engine import ask_with_follow_ups
-from backend.services.llm.manager import get_llm_manager
 from backend.middleware.auth import get_current_user
-from backend.middleware.rate_limit import limiter, AI_LIMIT
+from backend.middleware.rate_limit import AI_LIMIT, limiter
+from backend.models.schemas import ChatRequest, ChatResponseWithFollowUps
+from backend.services.llm.manager import get_llm_manager
+from backend.services.rag_engine import ask_with_follow_ups
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["chat"])

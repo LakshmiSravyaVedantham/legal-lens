@@ -3,12 +3,12 @@
 import logging
 from functools import lru_cache
 
-from backend.core.settings import get_settings
 from backend.core.database import get_db
 from backend.core.encryption import decrypt
+from backend.core.settings import get_settings
+from backend.services.llm.anthropic import AnthropicProvider
 from backend.services.llm.base import BaseLLMProvider
 from backend.services.llm.ollama import OllamaProvider
-from backend.services.llm.anthropic import AnthropicProvider
 from backend.services.llm.openai_provider import OpenAIProvider
 
 logger = logging.getLogger(__name__)
@@ -95,7 +95,6 @@ class LLMManager:
     async def check_status(self, org_id: str = "") -> list[dict]:
         """Check health of all configured providers."""
         config = await self._get_org_config(org_id) if org_id else None
-        settings = get_settings()
 
         providers_to_check = ["ollama", "anthropic", "openai", "azure_openai"]
         results = []

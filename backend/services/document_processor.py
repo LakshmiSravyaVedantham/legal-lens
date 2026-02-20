@@ -1,8 +1,8 @@
 import logging
 from pathlib import Path
 
-from PyPDF2 import PdfReader
 from docx import Document
+from PyPDF2 import PdfReader
 
 logger = logging.getLogger(__name__)
 

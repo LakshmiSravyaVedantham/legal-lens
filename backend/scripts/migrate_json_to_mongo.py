@@ -6,7 +6,6 @@ Usage: python -m backend.scripts.migrate_json_to_mongo
 import asyncio
 import json
 import logging
-from pathlib import Path
 from datetime import datetime, timezone
 
 from motor.motor_asyncio import AsyncIOMotorClient

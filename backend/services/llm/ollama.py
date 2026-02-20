@@ -1,6 +1,7 @@
 """Ollama LLM provider."""
 
 import logging
+
 import httpx
 
 from backend.services.llm.base import BaseLLMProvider

@@ -3,10 +3,10 @@
 import logging
 
 from fastapi import Depends, HTTPException, status
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from backend.core.security import decode_token
-from backend.models.user import Role, ROLE_HIERARCHY
+from backend.models.user import ROLE_HIERARCHY, Role
 from backend.services.auth_service import get_user_by_id
 
 logger = logging.getLogger(__name__)

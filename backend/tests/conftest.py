@@ -1,14 +1,11 @@
 """Shared fixtures for backend tests."""
 
-import asyncio
-from datetime import datetime, timezone
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from httpx import ASGITransport, AsyncClient
 
 from backend.models.user import Role
-
 
 # ---------------------------------------------------------------------------
 # Test user data
@@ -101,8 +98,8 @@ def _override_auth():
 @pytest.fixture
 async def client(mock_db):
     """AsyncClient with mocked DB and bypassed auth."""
-    from backend.middleware.auth import get_current_user
     from backend.main import app
+    from backend.middleware.auth import get_current_user
 
     # Override auth
     app.dependency_overrides[get_current_user] = _override_auth()

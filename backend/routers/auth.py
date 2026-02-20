@@ -2,15 +2,19 @@
 
 import logging
 
-from fastapi import APIRouter, HTTPException, Depends, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
 
-from backend.models.user import UserCreate, UserLogin, UserResponse, Token, TokenRefresh
-from backend.services.auth_service import register_user, login_user
-from backend.core.security import decode_token, create_access_token, create_refresh_token
 from backend.core.database import get_db
+from backend.core.security import (
+    create_access_token,
+    create_refresh_token,
+    decode_token,
+)
 from backend.middleware.auth import get_current_user
-from backend.middleware.rate_limit import limiter, AUTH_LIMIT
+from backend.middleware.rate_limit import AUTH_LIMIT, limiter
+from backend.models.user import Token, TokenRefresh, UserCreate, UserLogin, UserResponse
 from backend.services.activity import log_audit_event
+from backend.services.auth_service import login_user, register_user
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["auth"])

@@ -1,6 +1,7 @@
 """Async MongoDB connection via Motor."""
 
 import logging
+
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 
 logger = logging.getLogger(__name__)

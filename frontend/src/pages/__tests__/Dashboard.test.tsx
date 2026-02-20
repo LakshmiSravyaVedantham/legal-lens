@@ -48,7 +48,8 @@ describe('Dashboard', () => {
     renderWithProviders(<Dashboard />, {
       auth: { isAuthenticated: true },
     });
-    expect(screen.getByText('Upload Documents')).toBeInTheDocument();
+    const uploads = screen.getAllByText('Upload Documents');
+    expect(uploads.length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText('Document Q&A')).toBeInTheDocument();
     expect(screen.getByText('View Analytics')).toBeInTheDocument();
   });

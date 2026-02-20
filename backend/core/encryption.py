@@ -1,6 +1,7 @@
 """Fernet encryption for storing API keys in MongoDB."""
 
 import logging
+
 from cryptography.fernet import Fernet, InvalidToken
 
 from backend.core.settings import get_settings

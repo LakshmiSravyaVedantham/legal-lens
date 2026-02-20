@@ -1,8 +1,8 @@
 import logging
 
 from backend.models.schemas import Citation
-from backend.services.search_engine import semantic_search
 from backend.services.llm.manager import LLMManager
+from backend.services.search_engine import semantic_search
 
 logger = logging.getLogger(__name__)
 

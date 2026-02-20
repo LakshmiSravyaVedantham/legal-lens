@@ -4,16 +4,16 @@ Usage: python -m backend.scripts.create_admin
 """
 
 import asyncio
-import sys
 import logging
-
-from motor.motor_asyncio import AsyncIOMotorClient
-from bson import ObjectId
+import sys
 from datetime import datetime, timezone
 
-from backend.core.settings import get_settings
-from backend.core.security import hash_password
+from bson import ObjectId
+from motor.motor_asyncio import AsyncIOMotorClient
+
 from backend.core.database import _ensure_indexes
+from backend.core.security import hash_password
+from backend.core.settings import get_settings
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -69,10 +69,10 @@ async def main():
         "is_active": True,
     })
 
-    print(f"\nAdmin user created successfully!")
+    print("\nAdmin user created successfully!")
     print(f"  Email: {email}")
     print(f"  Organization: {org_name}")
-    print(f"  Role: admin\n")
+    print("  Role: admin\n")
 
     client.close()
 

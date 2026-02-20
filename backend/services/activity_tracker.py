@@ -2,7 +2,6 @@
 import json
 import logging
 from datetime import datetime
-from pathlib import Path
 
 from backend.config import PROCESSED_DIR
 

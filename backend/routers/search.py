@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends, Request
 
-from backend.models.schemas import SearchRequest, SearchResult
-from backend.services.search_engine import semantic_search
-from backend.services.activity import log_search, log_activity
 from backend.middleware.auth import get_current_user
-from backend.middleware.rate_limit import limiter, SEARCH_LIMIT
+from backend.middleware.rate_limit import SEARCH_LIMIT, limiter
+from backend.models.schemas import SearchRequest, SearchResult
+from backend.services.activity import log_activity, log_search
+from backend.services.search_engine import semantic_search
 
 router = APIRouter(tags=["search"])
 

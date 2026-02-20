@@ -4,13 +4,13 @@ from pathlib import Path
 from fastapi import APIRouter, Depends
 
 from backend.core.settings import get_settings
-from backend.services.activity import (
-    get_recent_searches,
-    get_activity_log,
-    get_search_analytics,
-)
 from backend.middleware.auth import get_current_user, require_role
 from backend.models.user import Role
+from backend.services.activity import (
+    get_activity_log,
+    get_recent_searches,
+    get_search_analytics,
+)
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["analytics"])

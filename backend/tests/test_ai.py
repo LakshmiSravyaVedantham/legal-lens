@@ -1,8 +1,7 @@
 """Tests for AI analysis endpoints."""
 
-import pytest
-from unittest.mock import AsyncMock, patch, MagicMock
 from datetime import datetime, timezone
+from unittest.mock import AsyncMock, MagicMock, patch
 
 from tests.conftest import TEST_USER
 
@@ -38,7 +37,7 @@ async def test_analyze_fresh(client, mock_db):
             "summary": "New summary", "key_points": [],
         }),
         patch("backend.services.ai_features.save_analysis", new_callable=AsyncMock),
-        patch("backend.services.document_utils.get_doc_text", new_callable=AsyncMock, return_value=(
+        patch("backend.routers.ai.get_doc_text", new_callable=AsyncMock, return_value=(
             {"filename": "doc.pdf"}, "Full text content"
         )),
         patch("backend.routers.ai.get_llm_manager"),
@@ -79,7 +78,7 @@ async def test_get_all_analyses(client, mock_db):
 async def test_compare_documents(client, mock_db):
     """Document comparison endpoint works."""
     with (
-        patch("backend.services.document_utils.get_doc_text", new_callable=AsyncMock, side_effect=[
+        patch("backend.routers.ai.get_doc_text", new_callable=AsyncMock, side_effect=[
             ({"filename": "a.pdf"}, "Text of doc A"),
             ({"filename": "b.pdf"}, "Text of doc B"),
         ]),

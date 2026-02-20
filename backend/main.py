@@ -3,16 +3,26 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-from backend.core.settings import get_settings
-from backend.core.database import connect_db, close_db
-from backend.services import embeddings
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
-from backend.middleware.logging import setup_logging, RequestTimingMiddleware
+from backend.core.database import close_db, connect_db
+from backend.core.settings import get_settings
+from backend.middleware.logging import RequestTimingMiddleware, setup_logging
 from backend.middleware.rate_limit import limiter
-from backend.routers import documents, search, chat, analytics, legal, auth, health, llm_config, ai, audit
+from backend.routers import (
+    ai,
+    analytics,
+    audit,
+    auth,
+    chat,
+    documents,
+    health,
+    legal,
+    llm_config,
+    search,
+)
+from backend.services import embeddings
 
 settings = get_settings()
 setup_logging(log_format=settings.log_format, log_level=settings.log_level)

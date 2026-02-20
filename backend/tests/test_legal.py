@@ -1,9 +1,8 @@
 """Tests for legal intelligence endpoints (clauses, bookmarks, key terms)."""
 
-import pytest
-from unittest.mock import AsyncMock, patch, MagicMock
+from unittest.mock import AsyncMock, MagicMock, patch
 
-from tests.conftest import TEST_USER, _make_async_cursor
+from tests.conftest import _make_async_cursor
 
 
 async def test_clause_library(client):
@@ -40,13 +39,13 @@ async def test_bookmarks_crud(client, mock_db):
     """Create and list bookmarks."""
     # List (empty)
     mock_db.bookmarks.find = MagicMock(return_value=_make_async_cursor([]))
-    with patch("backend.services.bookmarks.get_bookmarks", new_callable=AsyncMock, return_value=[]):
+    with patch("backend.routers.legal.get_bookmarks", new_callable=AsyncMock, return_value=[]):
         res = await client.get("/api/bookmarks")
     assert res.status_code == 200
 
     # Create
-    with patch("backend.services.bookmarks.add_bookmark", new_callable=AsyncMock, return_value={
-        "id": "bm-1",
+    with patch("backend.routers.legal.add_bookmark", new_callable=AsyncMock, return_value={
+        "id": "000000000000000000000010",
         "document_name": "contract.pdf",
         "text": "Key clause text",
         "note": "",
@@ -61,8 +60,8 @@ async def test_bookmarks_crud(client, mock_db):
     assert res.json()["document_name"] == "contract.pdf"
 
     # Delete
-    with patch("backend.services.bookmarks.delete_bookmark", new_callable=AsyncMock, return_value=True):
-        res = await client.delete("/api/bookmarks/bm-1")
+    with patch("backend.routers.legal.delete_bookmark", new_callable=AsyncMock, return_value=True):
+        res = await client.delete("/api/bookmarks/000000000000000000000010")
     assert res.status_code == 200
 
 
@@ -77,7 +76,7 @@ async def test_key_terms(client, mock_db):
         references=["Section 3.1"],
     )
     with (
-        patch("backend.services.document_utils.get_doc_text", new_callable=AsyncMock, return_value=(
+        patch("backend.routers.legal._get_doc_text", new_callable=AsyncMock, return_value=(
             {"filename": "contract.pdf"}, "This Agreement is between Party A and Party B..."
         )),
         patch("backend.routers.legal.extract_key_terms", return_value=mock_terms),

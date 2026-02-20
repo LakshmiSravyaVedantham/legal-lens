@@ -1,16 +1,17 @@
 import logging
-from fastapi import APIRouter, HTTPException, Depends
+
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from backend.core.database import get_db
-from backend.services.key_terms import extract_key_terms, classify_document
-from backend.services.clause_library import get_clause_library, get_clause_by_id
-from backend.services.search_engine import semantic_search
-from backend.services.bookmarks import add_bookmark, get_bookmarks, delete_bookmark
-from backend.services.activity import log_activity
-from backend.services.document_utils import get_doc_text as _get_doc_text
 from backend.middleware.auth import get_current_user, require_role
 from backend.models.user import Role
+from backend.services.activity import log_activity
+from backend.services.bookmarks import add_bookmark, delete_bookmark, get_bookmarks
+from backend.services.clause_library import get_clause_by_id, get_clause_library
+from backend.services.document_utils import get_doc_text as _get_doc_text
+from backend.services.key_terms import classify_document, extract_key_terms
+from backend.services.search_engine import semantic_search
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["legal"])

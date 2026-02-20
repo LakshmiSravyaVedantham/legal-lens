@@ -1,8 +1,7 @@
 """Tests for document endpoints."""
 
-import pytest
-from unittest.mock import AsyncMock, patch, MagicMock
 from datetime import datetime, timezone
+from unittest.mock import AsyncMock, MagicMock, patch
 
 from tests.conftest import TEST_USER, _make_async_cursor
 
@@ -94,7 +93,7 @@ async def test_stats(client, mock_db):
         mock_vs.get_total_chunks.return_value = 42
         mock_manager = MagicMock()
         mock_manager.check_status = AsyncMock(return_value=[{"available": True, "provider": "ollama"}])
-        with patch("backend.routers.documents.get_llm_manager", return_value=mock_manager):
+        with patch("backend.services.llm.manager.get_llm_manager", return_value=mock_manager):
             res = await client.get("/api/stats")
 
     assert res.status_code == 200

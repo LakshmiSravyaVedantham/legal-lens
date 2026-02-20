@@ -2,15 +2,19 @@
 
 import logging
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 
 from backend.core.database import get_db
 from backend.core.encryption import encrypt
-from backend.models.llm_config import LLMConfigRequest, LLMConfigResponse, ProviderConfig
 from backend.middleware.auth import require_role
+from backend.models.llm_config import (
+    LLMConfigRequest,
+    LLMConfigResponse,
+    ProviderConfig,
+)
 from backend.models.user import Role
-from backend.services.llm.manager import get_llm_manager
 from backend.services.activity import log_audit_event
+from backend.services.llm.manager import get_llm_manager
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["llm-config"])

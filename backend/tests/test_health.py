@@ -1,6 +1,5 @@
 """Tests for health check endpoints."""
 
-import pytest
 
 
 async def test_health_basic(client):

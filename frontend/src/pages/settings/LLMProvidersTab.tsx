@@ -72,6 +72,7 @@ export default function LLMProvidersTab() {
       if (!prev) return prev;
       return {
         ...prev,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [key]: { ...(prev as any)[key], [field]: value },
       };
     });
@@ -84,8 +85,8 @@ export default function LLMProvidersTab() {
     try {
       await api.updateLLMConfig(config);
       setMessage('Configuration saved successfully');
-    } catch (err: any) {
-      setMessage(`Error: ${err.message}`);
+    } catch (err: unknown) {
+      setMessage(`Error: ${err instanceof Error ? err.message : String(err)}`);
     } finally {
       setSaving(false);
     }
@@ -108,7 +109,8 @@ export default function LLMProvidersTab() {
   return (
     <div className="space-y-6">
       {PROVIDERS.map(({ key, label, description }) => {
-        const cfg = (config as any)[key] as ProviderConfig;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const cfg = (config as any)[key];
         const status = getStatus(key);
 
         return (

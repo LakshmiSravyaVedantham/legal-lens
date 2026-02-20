@@ -20,6 +20,7 @@ export default function DocumentViewer() {
   const [editingMatter, setEditingMatter] = useState(false);
   const { toast } = useToast();
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (!id) return;
     setLoading(true);
@@ -37,6 +38,7 @@ export default function DocumentViewer() {
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
   }, [id]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const saveMatter = async () => {
     if (!id) return;
@@ -44,8 +46,8 @@ export default function DocumentViewer() {
       await api.setMatterTag(id, matter);
       toast('success', 'Matter information saved');
       setEditingMatter(false);
-    } catch (e: any) {
-      toast('error', e.message);
+    } catch (e: unknown) {
+      toast('error', e instanceof Error ? e.message : String(e));
     }
   };
 

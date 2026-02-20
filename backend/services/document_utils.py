@@ -1,10 +1,11 @@
 """Shared document utility: fetch document record + full text."""
 
 import logging
+
 from fastapi import HTTPException
 
-from backend.core.settings import get_settings
 from backend.core.database import get_db
+from backend.core.settings import get_settings
 from backend.models.schemas import ProcessingStatus
 from backend.services.document_processor import extract_text
 

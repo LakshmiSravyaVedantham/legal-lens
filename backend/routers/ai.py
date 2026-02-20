@@ -1,16 +1,17 @@
 """AI-powered analysis router — all AI feature endpoints."""
 
 import logging
-from fastapi import APIRouter, HTTPException, Depends, Request
+
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from backend.core.database import get_db
 from backend.middleware.auth import get_current_user
-from backend.middleware.rate_limit import limiter, AI_LIMIT
-from backend.services.document_utils import get_doc_text
-from backend.services.llm.manager import get_llm_manager
+from backend.middleware.rate_limit import AI_LIMIT, limiter
 from backend.services import ai_features
 from backend.services.activity import log_audit_event
+from backend.services.document_utils import get_doc_text
+from backend.services.llm.manager import get_llm_manager
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/ai", tags=["ai"])

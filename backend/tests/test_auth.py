@@ -1,8 +1,7 @@
 """Tests for authentication endpoints."""
 
-import pytest
-from unittest.mock import AsyncMock, patch, MagicMock
 from datetime import datetime, timezone
+from unittest.mock import AsyncMock, MagicMock, patch
 
 from bson import ObjectId
 
@@ -94,8 +93,9 @@ async def test_login_wrong_password(client_no_auth, mock_db):
 
 async def test_me_authenticated(client):
     """GET /auth/me returns current user data."""
-    from tests.conftest import TEST_USER
     from bson import ObjectId
+
+    from tests.conftest import TEST_USER
 
     with patch("backend.routers.auth.get_db") as mock_get_db:
         db = MagicMock()

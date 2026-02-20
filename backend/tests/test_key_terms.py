@@ -1,7 +1,6 @@
 """Unit tests for key_terms extraction and document classification — no DB needed."""
 
-from backend.services.key_terms import extract_key_terms, classify_document, KeyTerms
-
+from backend.services.key_terms import classify_document, extract_key_terms
 
 # ─── extract_key_terms ───
 

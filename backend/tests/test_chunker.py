@@ -1,9 +1,9 @@
 """Unit tests for the chunker service — no DB needed."""
 
-from unittest.mock import patch, MagicMock
 from dataclasses import dataclass
+from unittest.mock import MagicMock, patch
 
-from backend.services.chunker import _split_sentences, chunk_pages, Chunk
+from backend.services.chunker import Chunk, _split_sentences, chunk_pages
 
 
 def test_split_sentences_basic():

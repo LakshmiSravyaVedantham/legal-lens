@@ -23,7 +23,7 @@ def _extract_json(text: str) -> dict | list:
     if text.startswith("```"):
         # Remove code fence
         lines = text.split("\n")
-        lines = [l for l in lines if not l.strip().startswith("```")]
+        lines = [line for line in lines if not line.strip().startswith("```")]
         text = "\n".join(lines).strip()
     try:
         return json.loads(text)
