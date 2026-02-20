@@ -26,6 +26,7 @@ export default function Dashboard() {
   const [loadError, setLoadError] = useState<string | null>(null);
   const navigate = useNavigate();
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     setLoadError(null);
     Promise.all([
@@ -36,6 +37,7 @@ export default function Dashboard() {
       setLoadError('Failed to load dashboard data. Please try refreshing the page.');
     });
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const actionIcons: Record<string, string> = {
     document_uploaded: '📄',

@@ -80,8 +80,9 @@ export const demoData = {
     total_results: demoCitations.length,
   }),
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   chat: (_query: string): ChatResponse => ({
-    answer: `Based on the uploaded documents, I can provide the following analysis:\n\nThe Master Services Agreement between Acme Corporation and TechServ Solutions [1] contains standard indemnification provisions requiring the Service Provider to defend and hold harmless the Client from claims arising out of breach [1]. The agreement also includes a limitation of liability clause capping aggregate liability at twelve months of fees paid [2].\n\nRegarding governing law, the Employment Agreement specifies Delaware law as the governing jurisdiction [3], while the MSA follows similar Delaware choice-of-law provisions.\n\nThe termination provisions allow either party to terminate for convenience with 60 days\' written notice [4], with payment obligations surviving through the effective termination date.\n\n*Note: This is demo data. Deploy the backend locally for real document analysis.*`,
+    answer: `Based on the uploaded documents, I can provide the following analysis:\n\nThe Master Services Agreement between Acme Corporation and TechServ Solutions [1] contains standard indemnification provisions requiring the Service Provider to defend and hold harmless the Client from claims arising out of breach [1]. The agreement also includes a limitation of liability clause capping aggregate liability at twelve months of fees paid [2].\n\nRegarding governing law, the Employment Agreement specifies Delaware law as the governing jurisdiction [3], while the MSA follows similar Delaware choice-of-law provisions.\n\nThe termination provisions allow either party to terminate for convenience with 60 days' written notice [4], with payment obligations surviving through the effective termination date.\n\n*Note: This is demo data. Deploy the backend locally for real document analysis.*`,
     citations: demoCitations.slice(0, 4),
     ollama_available: true,
   }),

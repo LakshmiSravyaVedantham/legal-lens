@@ -3,17 +3,17 @@
 from unittest.mock import AsyncMock, MagicMock, patch
 
 
-async def test_search(client):
+async def test_search(client):  # noqa: ARG001
     """Search returns results."""
     mock_results = [
-        MagicMock(
-            document_id="doc-1",
-            text="Indemnification clause found",
-            document_name="contract.pdf",
-            page=3,
-            paragraph=1,
-            score=0.85,
-        ),
+        {
+            "document_id": "doc-1",
+            "text": "Indemnification clause found",
+            "document_name": "contract.pdf",
+            "page": 3,
+            "paragraph": 1,
+            "score": 0.85,
+        },
     ]
     with patch("backend.routers.search.semantic_search", return_value=mock_results):
         res = await client.post("/api/search", json={"query": "indemnification", "top_k": 5})

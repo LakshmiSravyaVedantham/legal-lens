@@ -90,8 +90,8 @@ export default function ResearchPage() {
         selected.map((b) => ({ document_name: b.document_name, page: b.page, text: b.text })),
       );
       setBrief(result);
-    } catch (e: any) {
-      toast('error', e.message);
+    } catch (e: unknown) {
+      toast('error', e instanceof Error ? e.message : String(e));
     } finally {
       setBriefLoading(false);
     }

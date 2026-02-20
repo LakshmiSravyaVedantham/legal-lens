@@ -24,6 +24,7 @@ export default function AIInsights() {
   const { id } = useParams<{ id: string }>();
   const [activeTab, setActiveTab] = useState<Tab>('summary');
   const [loading, setLoading] = useState<Record<string, boolean>>({});
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<Record<string, any>>({});
   const [docName, setDocName] = useState('');
   const { toast } = useToast();
@@ -34,6 +35,7 @@ export default function AIInsights() {
     api.getDocumentContent(id).then((d) => setDocName(d.filename)).catch(() => {});
     // Try loading cached analyses
     api.getAllAnalyses(id).then((res) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const loaded: Record<string, any> = {};
       for (const [type, val] of Object.entries(res.analyses)) {
         loaded[type] = { ...val.result, cached: true, document_id: id, analysis_type: type };
@@ -48,8 +50,8 @@ export default function AIInsights() {
     try {
       const result = await api.runAnalysis(id, type, force);
       setData((p) => ({ ...p, [type]: result }));
-    } catch (e: any) {
-      toast('error', e.message);
+    } catch (e: unknown) {
+      toast('error', e instanceof Error ? e.message : String(e));
     } finally {
       setLoading((p) => ({ ...p, [type]: false }));
     }

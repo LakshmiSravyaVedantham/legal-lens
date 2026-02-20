@@ -32,6 +32,7 @@ export default function CommandPalette() {
     return () => document.removeEventListener('keydown', handler);
   }, []);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     if (open) {
       setQuery('');
@@ -39,6 +40,7 @@ export default function CommandPalette() {
       setTimeout(() => inputRef.current?.focus(), 50);
     }
   }, [open]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const filtered = query
     ? commands.filter((c) => c.label.toLowerCase().includes(query.toLowerCase()))

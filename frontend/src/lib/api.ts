@@ -272,14 +272,17 @@ export const api = {
   },
 
   // LLM Config (admin only)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getLLMConfig(): Promise<any> {
     return request('/llm/config');
   },
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   updateLLMConfig(config: any): Promise<{ message: string }> {
     return request('/llm/config', { method: 'PUT', body: JSON.stringify(config) });
   },
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getLLMProviderStatus(): Promise<{ providers: any[] }> {
     return request('/llm/providers/status');
   },
@@ -292,6 +295,7 @@ export const api = {
     });
   },
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getAllAnalyses(docId: string): Promise<{ document_id: string; analyses: Record<string, { result: any; created_at: string | null }> }> {
     return request(`/ai/documents/${docId}/analyses`);
   },

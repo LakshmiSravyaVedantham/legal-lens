@@ -30,6 +30,7 @@ export default function App() {
   const [user, setUser] = useState<User | null>(null);
   const [tokens, setTokens] = useState<AuthTokens | null>(null);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     const saved = loadAuth();
     if (saved.user && saved.tokens) {
@@ -37,6 +38,7 @@ export default function App() {
       setTokens(saved.tokens);
     }
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const login = useCallback(async (email: string, password: string) => {
     const res = await fetch(`${API_BASE}/auth/login`, {

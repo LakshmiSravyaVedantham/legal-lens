@@ -51,8 +51,8 @@ export default function SearchPage() {
         .then(setAiSuggestions)
         .catch(() => {})
         .finally(() => setSuggestLoading(false));
-    } catch (e: any) {
-      setError(e.message);
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : String(e));
     } finally {
       setLoading(false);
     }

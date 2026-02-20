@@ -22,8 +22,8 @@ export default function ClauseLibrary() {
     try {
       const data = await api.searchClause(clause.id);
       setResults(data.results);
-    } catch (e: any) {
-      toast('error', e.message);
+    } catch (e: unknown) {
+      toast('error', e instanceof Error ? e.message : String(e));
     } finally {
       setLoading(false);
     }
@@ -38,8 +38,8 @@ export default function ClauseLibrary() {
         text: result.text,
       });
       toast('success', 'Saved to Research');
-    } catch (e: any) {
-      toast('error', e.message);
+    } catch (e: unknown) {
+      toast('error', e instanceof Error ? e.message : String(e));
     }
   };
 

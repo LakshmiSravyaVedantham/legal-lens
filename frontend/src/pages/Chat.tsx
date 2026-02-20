@@ -49,10 +49,10 @@ export default function Chat() {
         ...prev,
         { role: 'assistant', content: res.answer, citations: res.citations, followUps: res.follow_up_suggestions },
       ]);
-    } catch (e: any) {
+    } catch (e: unknown) {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: `Error: ${e.message}` },
+        { role: 'assistant', content: `Error: ${e instanceof Error ? e.message : String(e)}` },
       ]);
     } finally {
       setLoading(false);
